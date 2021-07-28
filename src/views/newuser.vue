@@ -1,7 +1,7 @@
 <template>
   <div class="lato-font " style="background: #f9f9f9">
       <div class="headorder">
-        <div class="padd-8-16 clr-282828">
+        <div class="padd-8-32 clr-282828">
           <label class="fsize16 marg-0 fw-600">Access Control</label>
         </div>
 
@@ -57,7 +57,7 @@
       </div>
 
       <div
-        class="marg-t-24 padd-0-16 targetDiv"
+        class="marg-t-24 padd-0-32 targetDiv"
         id="div1"
         v-if="this.newuserList.length > 0"
       >
@@ -92,8 +92,6 @@
                 <td class="padd-14-40 fsize14">
                   Enabled | 2 Jun, 2021 - 10:30 PM
                 </td>
-                <!-- <td class="fsize14 padd-12-7">{{ item.createdAt }}</td>
-              <td class="fsize14 padd-12-7">{{ item.lastUpdatedAt }}</td> -->
                 <td class="padd-14-40 fsize14">
                   <span><img src="@/assets/deleteicon.svg" alt="" /></span>
                 </td>
@@ -103,7 +101,7 @@
         </b-card>
       </div>
       <div
-        class="padd-0-16 marg-t-24 targetDiv"
+        class="padd-0-32 marg-t-24 targetDiv"
         id="div2"
         style="display: none"
       >
@@ -140,16 +138,6 @@
                             'is-invalid': submitted && $v.name.$error,
                           }"
                         />
-                        <!-- <div
-                          v-if="submitted && $v.name.$error"
-                          class="invalid-feedback marg-0 l-height-20"
-                        >
-                          <span
-                            v-if="!$v.user.name.required"
-                            class="validatemessage fsize12"
-                            >Please Enter Your name</span
-                          >
-                        </div> -->
                       </div>
                     </span>
                   </div>
@@ -180,17 +168,6 @@
                               'is-invalid': submitted && $v.name1.$error,
                             }"
                           />
-                          <!-- <div
-                            v-if="submitted && $v.name.$error"
-                            class="invalid-feedback marg-0 l-height-20"
-                          >
-                            <span
-                              v-if="!$v.user.name.required"
-                              class="validatemessage fsize12"
-                            >
-                              Please Enter Your name</span
-                            >
-                          </div> -->
                         </div>
                       </span>
                     </div>
@@ -223,20 +200,6 @@
                               'is-invalid': submitted && $v.email.$error,
                             }"
                           />
-                          <!-- <div
-                            v-if="submitted && $v.email.$error"
-                            class="invalid-feedback marg-0 l-height-20"
-                          >
-                            <span
-                              v-if="!$v.email.required"
-                              class="validatemessage fsize12"
-                            >
-                              Please Enter Your Email</span
-                            >
-                            <span v-if="!$v.email.email" class="validatemessage"
-                              >Please enter your valid emailID
-                            </span>
-                          </div> -->
                         </div>
                       </span>
                     </div>
@@ -267,17 +230,6 @@
                           'is-invalid': submitted && $v.mobile_number.$error,
                         }"
                       />
-                      <!-- <div
-                        v-if="submitted && $v.user.mobile_number.$error"
-                        class="invalid-feedback marg-0 l-height-20"
-                      >
-                        <span
-                          v-if="!$v.user.mobile_number.required"
-                          class="validatemessage fsize12"
-                        >
-                          Please Enter Your PhoneNo</span
-                        >
-                      </div> -->
                     </div>
                   </span>
                 </div>
@@ -317,17 +269,6 @@
                             'is-invalid': submitted && $v.password.$error,
                           }"
                         />
-                        <!-- <div
-                          v-if="submitted && $v.password.$error"
-                          class="invalid-feedback marg-0 l-height-20"
-                        >
-                          <span
-                            v-if="!$v.password.required"
-                            class="validatemessage fsize12"
-                          >
-                            Please Enter Your Password</span
-                          >
-                        </div> -->
                       </div>
                     </span>
                   </div>
@@ -358,17 +299,6 @@
                             'is-invalid': submitted && $v.password1.$error,
                           }"
                         />
-                        <!-- <div
-                          v-if="submitted && $v.password.$error"
-                          class="invalid-feedback marg-0 l-height-20"
-                        >
-                          <span
-                            v-if="!$v.user.password.required"
-                            class="validatemessage fsize12"
-                          >
-                            Please Enter ConfirmPassword</span
-                          >
-                        </div> -->
                       </div>
                     </span>
                   </div>
@@ -410,17 +340,6 @@
                           'is-invalid': submitted && $v.branchcode.$error,
                         }"
                       />
-                      <!-- <div
-                        v-if="submitted && $v.branchcode.$error"
-                        class="invalid-feedback marg-0 l-height-20"
-                      >
-                        <span
-                          v-if="!$v.branchcode.required"
-                          class="validatemessage fsize12"
-                        >
-                          Please Enter Branchcode</span
-                        >
-                      </div> -->
                     </div>
                   </span>
                 </div>
@@ -449,17 +368,6 @@
                           'is-invalid': submitted && $v.remishreecode.$error,
                         }"
                       />
-                      <!-- <div
-                        v-if="submitted && $v.remishreecode.$error"
-                        class="invalid-feedback marg-0 l-height-20"
-                      >
-                        <span
-                          v-if="!$v.remishreecode.required"
-                          class="validatemessage fsize12"
-                        >
-                          Please Enter Remishreecode</span
-                        >
-                      </div> -->
                     </div>
                   </span>
                 </div>
@@ -668,8 +576,6 @@ export default {
   name: "dashboard",
 
   data() {
-    // user.accept:
-    // []
     return {
       name: "",
       name1: "",
@@ -710,7 +616,6 @@ export default {
       httpService.newuser().then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
-            console.log(response);
             localStorage.setItem(
               "userNamePRofile",
               JSON.stringify(response.data["result"])
@@ -718,7 +623,6 @@ export default {
 
             this.newuserList = response.data["result"];
           } else {
-            console.log("something went wrong");
           }
         }
       });
@@ -743,10 +647,8 @@ export default {
       httpService.newadmin(jsondata).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
-            console.log(response);
-            //this.newuserList = response.data["result"];
+
           } else {
-            console.log("user cannot add");
           }
         }
       });
@@ -778,33 +680,6 @@ export default {
         $(this).addClass("active");
       });
     });
-    // function valthisform() {
-    //   var chkd =
-    //     document.checkbx.c1.checked ||
-    //     document.checkbx.c2.checked ||
-    //     document.checkbx.c3.checked ||
-    //     document.checkbx.c4.checked;
-
-    //   if (chkd == true) {
-    //   } else {
-    //     alert("please check a checkbox");
-    //   }
-    // }
-    //   $("input:checkbox").on('click', function() {
-    // // in the handler, 'this' refers to the box clicked on
-    // var $box = $(this);
-    // if ($box.is(":checked")) {
-    //   // the name of the box is retrieved using the .attr() method
-    //   // as it is assumed and expected to be immutable
-    //   var group = "input:checkbox[name='" + $box.attr("name") + "']";
-    //   // the checked state of the group/box on the other hand will change
-    //   // and the current value is retrieved using .prop() method
-    //   $(group).prop("checked", false);
-    //   $box.prop("checked", true);
-    // } else {
-    //   $box.prop("checked", false);
-    // }
-    //});
     $('input[type="checkbox"]').on("change", function () {
       $('input[type="checkbox"]').not(this).prop("checked", false);
     });
@@ -817,86 +692,8 @@ export default {
   padding: 14px 24px;
 }
 
-.bgrclr-d6f2ff {
-  background-color: #d6f2ff;
-}
-/* search box css */
-.searchwhole {
-  margin: 0;
-  position: relative;
-  padding: 4px 0 6px;
-  border: 1px solid #ededed !important;
-  border-radius: 4px;
-  transition: width 2s;
-  transition-timing-function: cubic-bezier(0.1, 0.7, 1, 0.1);
-}
-.search-box input {
-  transition-duration: 0.3s;
-}
-.search-box input:focus {
-  width: 200px;
-}
-.search-box {
-  margin: 0 8px;
-}
-.placeholdsearch {
-  font-size: 13px;
-  height: 24px;
-  margin-left: 5px;
-  width: 100px;
-  color: #56585a;
-}
-.search {
-  color: #0075e1 !important;
-  font-size: 12px !important;
-  cursor: pointer;
-  margin-right: 32px !important;
-}
-
-/* buttons */
-.btn32-mar-l16 {
-  margin-left: 16px;
-  border: 1px solid #e6e6e6;
-  font-size: 12px;
-  color: #282828;
-  background: #e6e6e6;
-  padding: 3px 12px;
-}
-.btn32 {
-  margin-left: 8px !important;
-  border: 1px solid #e6e6e6 !important;
-  font-size: 12px !important;
-  color: #282828 !important;
-  background: #e6e6e6 !important;
-}
-/* .headBtns.active {
-  background-color: #1f3565 !important;
-  color: #fff !important;
-  border-radius: 2px !important;
-  border: 1px solid #1f3565 !important;
-} */
-
-/* create new user */
-.clr-fff {
-  color: #ffffff;
-}
-.bgclr-000000 {
-  background-color: #000000;
-}
-.clr-000000 {
-  color: #000000;
-}
-.bgclr-fff {
-  background-color: #ffffff;
-}
 .Allcard {
   border: 4px !important;
-}
-/* .fw-b {
-  font-weight: bold;
-} */
-.marg-l-11 {
-  margin-left: 2px;
 }
 .w-464 {
   width: 464px;
@@ -904,19 +701,6 @@ export default {
 .w-224 {
   width: 224px;
 }
-.marg-t-2 {
-  margin-top: 1px;
-}
-.marg-l-4 {
-  margin-left: 6px;
-}
-.clr-282828 {
-  color: #282828;
-}
-/* .border-input1 {
-  border: solid 1px #a8a8a8 !important;
-  box-shadow: none !important;
-} */
 .borderclr-cbcb {
   border: solid 1px #cbcbcb !important;
   box-shadow: none !important;
@@ -927,15 +711,7 @@ export default {
 .w-24 {
   width: 24px;
 }
-.h-24 {
-  height: 24px;
-}
-.w-16 {
-  width: 16px;
-}
-.h-16 {
-  height: 16px;
-}
+
 .v-align {
   vertical-align: middle;
   line-height: 24px;
@@ -962,19 +738,12 @@ v-card {
 
   background-color: white;
   position: relative;
-  /* box-shadow: none; */
 }
 .textclr {
   color: #000000;
 }
 .clr-e1e1e1 {
   color: #6c757d;
-}
-.l-height-40 {
-  line-height: 40px;
-}
-.padd-l-12 {
-  padding-left: 12px;
 }
 .solid3 {
   border-top: solid 1px #e1e1e1;
@@ -989,36 +758,11 @@ v-card {
 .marg-t-13 {
   margin-top: 13px;
 }
-.marg-t-9 {
-  margin-top: 9px;
-}
-
-.f-size12 {
-  font-size: 12px;
-}
-
 .vertical-middle {
   vertical-align: middle !important;
-}
-.is-invalid {
-  border: 1px solid red !important;
-}
-.error-border {
-  border: 1px solid red !important;
 }
 .validatemessage {
   color: #ff0000 !important;
   font-size: 10px;
-}
-.borderclr-2E3031 {
-  border-color: #2e3031;
-}
-@media only screen and (max-width: 600px) {
-  /* body {
-    background-color: lightblue;
-  } */
-}
-.solid2{
-  margin: 7px 32px 0px 32px !important;
 }
 </style>

@@ -6,6 +6,9 @@
       </v-flex>
       <v-flex xs12 sm12 md6 lg6 xl6 align-center justify-center>
         <v-layout row wrap align-center justify-center marg-0>
+
+          <form @keyup.enter="suBmit()" >
+
           <div class="custom-card padd-16-24 bor-radius boxshad back-color">
             <div class="Img-div">
               <img src="@/assets/Logo.svg" class="widthHeight" alt="Logo" />
@@ -20,7 +23,9 @@
             <form method="post" class="w-100" @submit.prevent="suBmit">
               <div class="w-100 h-72">
                 <div class="l-height">
-                  <label class="fsize14 l-height marg-0">User Name</label>
+
+                  <label class="fsize14 l-height m-0 pl-2">Email Id</label>
+
                 </div>
                 <input
                   type="text"
@@ -31,7 +36,7 @@
                     w-100
                     h-40
                     bor-radius
-                    padd-8-16
+                    padd-8-8-16
                     border-input
                     fsize14
                     outline-none
@@ -43,16 +48,7 @@
                     'is-invalid': submitted && $v.email.$error,
                   }"
                 />
-                <!-- <div
-                  v-if="submitted && $v.email.$error"
-                  class="invalid-feedback marg-0 l-height-20"
-                >
-                  <span
-                    v-if="!$v.email.required"
-                    class="validatemessage fsize12"
-                    >Please Enter your email</span
-                  >
-                </div> -->
+
               </div>
               <div class="w-100 h-72 mb-4">
                 <div class="l-height">
@@ -69,7 +65,7 @@
                         w-100
                         h-40
                         bor-radius
-                        padd-8-16
+                        padd-8-8-16
                         border-input
                         fsize14
                         outline-none
@@ -117,25 +113,15 @@
                     </span>
                   </span>
                 </div>
-                <!-- <div
-                  v-if="submitted && $v.password.$error"
-                  class="invalid-feedback marg-0 l-height-20"
-                >
-                  <span
-                    v-if="!$v.password.required"
-                    class="validatemessage fsize12"
-                    >Please Enter your password</span
-                  >
-                </div> -->
+
               </div>
             </form>
 
             <div class="">
-              <!-- <router-link
-                to="/dashboard"
-                active-class="active"
-                tag="button"
-                exact
+
+              <button
+              type="button"
+
                 class="bor-radius w-100 h-40 fsize14bold-btn"
               >
                 Submit</router-link
@@ -207,7 +193,6 @@ export default {
       if (this.$v.$invalid) {
         return;
       }
-      // this.$router.push("/dashboard");
       let jsondata = {
         email: this.email,
         password: this.password,
@@ -218,7 +203,12 @@ export default {
           this.loader = false;
 
           if (response.data["status"] == 1) {
-            console.log(response);
+
+            localStorage.setItem(
+              "adminloginprofile",
+              JSON.stringify(response.data["result"])
+            );
+
             this.$router.push("/dashboard");
 
             localStorage.setItem("email", this.email);

@@ -1,7 +1,7 @@
 <template>
-  <div class="lato-font  clr-000000">
+  <div class="lato-font clr-000000">
     <div class="headorder">
-      <div class="padd-8-16 clr-282828">
+      <div class="padd-8-32 clr-282828">
         <label class="fsize16 marg-0 fw-600 clr-000000"
           >Document Review -
         </label>
@@ -9,15 +9,8 @@
 
       <div class="marg-r-8 padd-l-16 w-100">
         <button
-          class="
-            bttnalign
-            marg-l-16
-            headBtns
-            active
-            clr-000000
-            mar-right8
-            showSingle
-          "
+          class="bttnalign marg-l-16 headBtns clr-000000 mar-right8 showSingle"
+          :class="this.pancardContent ? 'active' : ''"
           target="1"
           @click="getPanCard()"
         >
@@ -25,6 +18,7 @@
         </button>
         <button
           class="bttnalign headBtns clr-000000 mar-right8 showSingle"
+          :class="this.addressContent ? 'active' : ''"
           @click="getaddress()"
           target="2"
         >
@@ -32,6 +26,7 @@
         </button>
         <button
           class="bttnalign headBtns clr-000000 mar-right8 showSingle"
+          :class="this.perAddressContent ? 'active' : ''"
           target="3"
           @click="permanentaddress()"
         >
@@ -39,6 +34,7 @@
         </button>
         <button
           class="bttnalign headBtns clr-000000 mar-right8 showSingle"
+          :class="this.bankDetailsContent ? 'active' : ''"
           target="4"
           @click="bankdetails()"
         >
@@ -46,6 +42,7 @@
         </button>
         <button
           class="bttnalign headBtns clr-000000 mar-right8 showSingle"
+          :class="this.additionalDetailsContent ? 'active' : ''"
           target="5"
           @click="additionaldetail()"
         >
@@ -71,15 +68,12 @@
               </span>
             </span>
           </span>
-          <!-- <span class="vl"></span> -->
           <span class="downlo" id="btnExport"
             ><img
               class="marg0-3-8 h-20 w-20"
               src="@/assets/downloadIcon.svg"
               alt=""
           /></span>
-
-          <!-- <span class="vl"></span> -->
 
           <span class="search"
             ><img
@@ -91,7 +85,7 @@
       </div>
       <hr class="solid2" />
     </div>
-    <div class="row m-0 targetDiv" id="div1">
+    <div class="row m-0" v-if="this.pancardContent">
       <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0 padd-0">
         <div class="h-64 ml-4 mt-6">
           <span class="">
@@ -109,6 +103,7 @@
                   outline-none
                   clr-e1e1e1
                 "
+                @click="getUploadFiles()"
               >
                 <option class="fsize12" value="null" role.selected hidden>
                   PAN CARD
@@ -132,7 +127,9 @@
           </span>
         </div>
 
-        <div class="w-426 h-268 bdrclr-2e3031 ml-4 mt-6"></div>
+        <div class="w-426 h-268 bdrclr-2e3031 ml-4 mt-6">
+          <!-- <img v-bind:src="require('../assets/' + img)" /> -->
+        </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 padd-0 mt-6">
         <div class="fsize12 clr-56585a">Name</div>
@@ -151,7 +148,7 @@
             class="fsize11 text-danger"
             v-if="this.submittedPanProof && !this.applicantNameCheckBox"
           >
-            Please check applicantName
+            Please select applicantName
           </div>
         </div>
 
@@ -171,7 +168,7 @@
             class="fsize11 text-danger"
             v-if="this.submittedPanProof && !this.panNoCheckBox"
           >
-            Please check PanNo
+            Please select PanNo
           </div>
         </div>
 
@@ -190,7 +187,7 @@
             class="fsize11 text-danger"
             v-if="this.submittedPanProof && !this.dobCheckBox"
           >
-            Please check DOB
+            Please select DOB
           </div>
         </div>
       </div>
@@ -232,9 +229,9 @@
       </div>
     </div>
 
-    <div class="row m-0 targetDiv" id="div2" style="display: none">
+    <div class="row m-0 mt-6" v-if="this.addressContent">
       <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0 padd-0">
-        <div class="h-64 ml-4 mt-6">
+        <div class="h-64 ml-4">
           <span class="">
             <div class="">
               <select
@@ -275,69 +272,127 @@
 
         <div class="w-426 h-268 bdrclr-2e3031 ml-4 mt-6"></div>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 padd-0 mt-6">
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 padd-0">
         <div class="fsize12 clr-56585a">AddressLine1</div>
         <div class="clr-000000 fsize12 mt-1">
           <input
             class="w-16 h-16 marg-t-2"
             type="checkbox"
-            name="c2"
-            value="c2"
-            id="corporatebanking"
+            v-model="addressLine"
           />
 
           <label class="marg-0 pl-2 valign-top fsize14">
             {{ this.addressline1 }}
           </label>
         </div>
+        <div class="height-18">
+          <div
+            class="fsize11 text-danger"
+            v-if="this.submittedaddressProof && !this.addressLine"
+          >
+            Please select AddressLine
+          </div>
+        </div>
         <div class="mt-4 fsize12 clr-56585a">Pin Code</div>
         <div class="clr-000000 fsize12 mt-1">
           <input
             class="w-16 h-16 marg-t-2"
             type="checkbox"
-            name="c2"
-            value="c2"
-            id="corporatebanking"
+            v-model="pincodeCheckBox"
           />
 
           <label class="marg-0 pl-2 valign-top fsize14">
             {{ this.pincode }}
           </label>
         </div>
-
+        <div class="height-18">
+          <div
+            class="fsize11 text-danger"
+            v-if="this.submittedaddressProof && !this.pincodeCheckBox"
+          >
+            Please select Pincode
+          </div>
+        </div>
         <div class="mt-4 fsize12 clr-56585a">City</div>
         <div class="clr-000000 fsize12 mt-1">
           <input
             class="w-16 h-16 marg-t-2"
             type="checkbox"
-            name="c2"
-            value="c2"
-            id="corporatebanking"
+            v-model="cityCheckBox"
           />
 
           <label class="marg-0 pl-2 valign-top fsize14">
             {{ this.city }}
           </label>
         </div>
-
+        <div class="height-18">
+          <div
+            class="fsize11 text-danger"
+            v-if="this.submittedaddressProof && !this.cityCheckBox"
+          >
+            Please select City
+          </div>
+        </div>
         <div class="mt-4 fsize12 clr-56585a">State</div>
         <div class="clr-000000 fsize12 mt-1">
           <input
             class="w-16 h-16 marg-t-2"
             type="checkbox"
-            name="c2"
-            value="c2"
-            id="corporatebanking"
+            v-model="stateCheckBox"
           />
 
           <label class="marg-0 pl-2 valign-top fsize14">
             {{ this.State }}
           </label>
         </div>
+        <div class="height-18">
+          <div
+            class="fsize11 text-danger"
+            v-if="this.submittedaddressProof && !this.stateCheckBox"
+          >
+            Please select State
+          </div>
+        </div>
+      </div>
+      <div class="row m-0 mt-10 mb-4 justify-content-flex-end">
+        <span class="fsize14"
+          ><button
+            type="button"
+            class="
+              padd-0-16
+              h-40
+              bgclr-fff
+              clr-2E3031
+              border-radius
+              bdrclr-2e3031
+              minwidth-96
+              mr-4
+            "
+            @click="callModal()"
+          >
+            Reject
+          </button>
+        </span>
+        <span class="fsize14 pr-16"
+          ><button
+            class="
+              padd-0-16
+              h-40
+              bgrclr-007AFF
+              border-radius
+              bdrclr-007aff
+              clr-fff
+              minwidth-96
+            "
+            @click="addressApprove()"
+          >
+            Approve
+          </button></span
+        >
       </div>
     </div>
 
-    <div class="row m-0 targetDiv" id="div3" style="display: none">
+    <div class="row m-0" v-if="this.perAddressContent">
       <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0 padd-0">
         <div class="h-64 ml-4 mt-6">
           <span class="">
@@ -442,7 +497,7 @@
       </div>
     </div>
 
-    <div class="row m-0 targetDiv" id="div4" style="display: none">
+    <div class="row m-0" v-if="this.bankDetailsContent">
       <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0 padd-0">
         <div class="h-64 ml-4 mt-6">
           <span class="">
@@ -547,7 +602,7 @@
       </div>
     </div>
 
-    <div class="row m-0 targetDiv" id="div5" style="display: none">
+    <div class="row m-0" id="div5" v-if="this.additionalDetailsContent">
       <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0 padd-0">
         <div class="h-64 ml-4 mt-6">
           <span class="">
@@ -784,6 +839,8 @@
         </div>
       </div>
     </div>
+
+    <!-- model dialog for comments -->
     <div
       class="modal fade"
       id="exampleModal"
@@ -798,12 +855,7 @@
             <span class="modal-title fsize18 clr-000000" id="exampleModalLabel">
               Are you sure you want to reject this user?
             </span>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
+            <button type="button" class="close" @click="closeModal()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -842,7 +894,7 @@
                 bdrclr-2e3031
                 border-radius
               "
-              data-dismiss="modal"
+              @click="closeModal()"
             >
               Close
             </button>
@@ -857,8 +909,7 @@
                 clr-fff
                 ml-4
               "
-              @click="panReject()"
-            >
+              @click="pancardContent ? panReject() : addressReject() ">
               Submit
             </button>
           </div>
@@ -906,18 +957,37 @@ export default {
       panNoCheckBox: false,
       dobCheckBox: false,
       submittedPanProof: false,
+      submittedaddressProof: false,
+      submittedperAddressProof: false,
+      submittedBankProof: false,
+      submittedAdditionalProof: false,
+      pancardContent: true,
+      addressContent: false,
+      perAddressContent: false,
+      bankDetailsContent: false,
+      additionalDetailsContent: false,
+      addressLine: false,
+      pincodeCheckBox: false,
+      cityCheckBox: false,
+      stateCheckBox: false,
     };
   },
   methods: {
-
     callModal() {
       $("#exampleModal").modal("show");
     },
     closeModal() {
+      this.comments = "";
       $("#exampleModal").modal("hide");
     },
     // get Pan details
     getPanCard() {
+      this.pancardContent = true;
+      this.addressContent = false;
+      this.perAddressContent = false;
+      this.bankDetailsContent = false;
+      this.additionalDetailsContent = false;
+      this.submittedaddressProof = false;
       let panCard = {
         applicationId: this.apllicationId,
       };
@@ -934,6 +1004,12 @@ export default {
     },
     // get address details
     getaddress() {
+      this.pancardContent = false;
+      this.addressContent = true;
+      this.perAddressContent = false;
+      this.bankDetailsContent = false;
+      this.additionalDetailsContent = false;
+      this.submittedPanProof = false;
       let getAdDress = {
         applicationId: this.apllicationId,
       };
@@ -944,38 +1020,43 @@ export default {
             this.pincode = response.data.result.pin;
             this.city = response.data.result.city;
             this.State = response.data.result.state;
-            console.log(response);
-            // localStorage.setItem(
-            //   "geTAddress",
-            //   JSON.stringify(response.data["result"])
-            // );
+        
           } else {
-            // console.log("user cannot add");
           }
         }
       });
     },
     // get permanentAddress details
     permanentaddress() {
+      this.pancardContent = false;
+      this.addressContent = false;
+      this.perAddressContent = true;
+      this.bankDetailsContent = false;
+      this.additionalDetailsContent = false;
+      this.submittedperAddressProof = false;
       let permanentAdDress = {
         applicationId: this.apllicationId,
       };
       httpService.pERmanentADdress(permanentAdDress).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
-            console.log(response);
             this.permanentAddress = response.data.result.address_line_1;
             this.perpin = response.data.result.pin;
             this.percity = response.data.result.city;
             this.perstate = response.data.result.state;
           } else {
-            // console.log("user cannot add");
           }
         }
       });
     },
     // get bank details
     bankdetails() {
+      this.pancardContent = false;
+      this.addressContent = false;
+      this.perAddressContent = false;
+      this.bankDetailsContent = true;
+      this.additionalDetailsContent = false;
+      this.submittedBankProof = false;
       let bank = {
         applicationId: this.apllicationId,
       };
@@ -986,8 +1067,6 @@ export default {
             this.bankname = response.data.result.bankName;
             this.bankaddress = response.data.result.bankAddress;
             this.micrcode = response.data.result.micrCode;
-
-            console.log(response);
           } else {
           }
         }
@@ -995,13 +1074,18 @@ export default {
     },
     // get additional details
     additionaldetail() {
+      this.pancardContent = false;
+      this.addressContent = false;
+      this.perAddressContent = false;
+      this.bankDetailsContent = false;
+      this.additionalDetailsContent = true;
+      this.submittedAdditionalProof = false;
       let additional = {
         applicationId: this.apllicationId,
       };
       httpService.aDDitionalDetails(additional).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
-            console.log(response);
             this.oCcupation = response.data.result.occupation;
             this.workprofile = response.data.result.work_profile;
             this.companyname = response.data.result.company_name;
@@ -1019,22 +1103,7 @@ export default {
         }
       });
     },
-    // get uploaded details
-    // getUploadFiles() {
-    //   let attachFile = {
-    //     applicationId: JSON.parse(localStorage.getItem("applicateid")),
-    //   };
-    //   httpService.uploadFiles(attachFile).then((response) => {
-    //     if (response.status == 200) {
-    //       if (response.data["status"] == 1) {
-    //         console.log(response);
-    //       } else {
-    //         console.log("user cannot add");
-    //       }
-    //     }
-    //   });
-    // },
-    //rejectPan card
+
     panReject() {
       let json = {
         applicationId: this.apllicationId,
@@ -1044,11 +1113,16 @@ export default {
       };
       httpService.panApproveOrReject(json).then((response) => {
         if (response.status == 200 && response.data.message == "Success") {
-          console.log(response);
+
+          // console.log(response);
+
           this.closeModal();
+          this.comments = "";
+          this.getaddress();
         }
       });
     },
+    //approvePan 
     panApprove() {
       this.submittedPanProof = true;
       if (
@@ -1064,11 +1138,77 @@ export default {
         };
         httpService.panApproveOrReject(json).then((response) => {
           if (response.status == 200 && response.data.message == "Success") {
-            console.log(response);
+
+            // console.log(response);
+            this.getaddress();
+
           }
         });
       }
     },
+    //addressApprove 
+    addressApprove() {
+      this.submittedaddressProof = true;
+      if (
+        this.addressLine &&
+        this.pincodeCheckBox &&
+        this.cityCheckBox &&
+        this.stateCheckBox
+      ) {
+        let json = {
+          applicationId: this.apllicationId,
+          isApprove: 1,
+          isRejected: 0,
+          comments: "",
+        };
+        httpService.addressApproveOrReject(json).then((response) => {
+          if (response.status == 200 && response.data.message == "Success") {
+            // console.log(response);
+            this.permanentaddress();
+          }
+        });
+      }
+    },
+    // addressReject
+    addressReject() {
+      let json = {
+        applicationId: this.apllicationId,
+        isApprove: 0,
+        isRejected: 1,
+        comments: this.comments,
+      };
+      httpService.addressApproveOrReject(json).then((response) => {
+        if (response.status == 200 && response.data.message == "Success") {
+          // console.log(response);
+          this.closeModal();
+          this.comments = "";
+          this.permanentaddress();
+        }
+      });
+    },
+   
+    permanentAddressApprove(){
+       this.submittedaddressProof = true;
+      if (
+        this.addressLine &&
+        this.pincodeCheckBox &&
+        this.cityCheckBox &&
+        this.stateCheckBox
+      ) {
+        let json = {
+          applicationId: this.apllicationId,
+          isApprove: 1,
+          isRejected: 0,
+          comments: "",
+        };
+        httpService.addressApproveOrReject(json).then((response) => {
+          if (response.status == 200 && response.data.message == "Success") {
+            // console.log(response);
+            this.permanentaddress();
+          }
+        });
+      }
+    }
   },
 
   mounted() {
@@ -1079,85 +1219,13 @@ export default {
       this.apllicationId = JSON.parse(localStorage.getItem("app_Id"));
     }
     this.getPanCard();
-    // jQuery(function () {
-    //   jQuery("#showSingle").click(function () {
-    //     jQuery(".targetDiv").show();
-    //   });
-    //   jQuery(".showSingle").click(function () {
-    //     jQuery(".targetDiv").hide();
-    //     jQuery("#div" + $(this).attr("target")).show();
-    //   });
-    // });
-    $(document).ready(function () {
-      $(".headBtns").on("click", function () {
-        $(".headBtns").removeClass("active");
-        $(this).addClass("active");
-      });
-    });
   },
 };
 </script>
 
 <style>
-.solid1,
-.solid2 {
-  border: 0;
-  border-top: 1px solid #a2a2a2;
-  margin: 7px 16px 0 !important;
-}
-.padd-0-16 {
-  padding: 0px 16px;
-}
-.searchwhole {
-  margin: 0;
-  position: relative;
-  padding: 4px 0 6px;
-  border: 1px solid #ededed !important;
-  border-radius: 4px;
-  transition: width 2s;
-  transition-timing-function: cubic-bezier(0.1, 0.7, 1, 0.1);
-}
-/* search */
-.h-16 {
-  height: 16px;
-}
-.w-16 {
-  width: 16px;
-}
 .w-280 {
   width: 280px !important;
-}
-.marg-l-5 {
-  margin-left: 5px;
-}
-.search-box input {
-  transition-duration: 0.3s;
-}
-.search-box input:focus {
-  width: 200px;
-}
-.search-box {
-  margin: 0 8px;
-}
-.placeholdsearch {
-  font-size: 13px;
-  height: 24px;
-  margin-left: 5px;
-  width: 100px;
-  color: #56585a;
-}
-.search {
-  color: #0075e1 !important;
-  font-size: 12px !important;
-  cursor: pointer;
-  margin-right: 16px !important;
-}
-
-.h-20 {
-  height: 20px;
-}
-.w-20 {
-  width: 20px;
 }
 .clr-56585a {
   color: #56585a;
@@ -1173,12 +1241,6 @@ export default {
 }
 .bdrclr-007aff {
   border: 1px solid #007aff;
-}
-.bgclr-fff {
-  background-color: #fff;
-}
-.bdrclr-2e3031 {
-  border: 1px solid #2e3031;
 }
 .model-header-align {
   width: 600px !important;
@@ -1205,9 +1267,7 @@ export default {
 .w-128 {
   width: 128px;
 }
-.marg-t-2 {
-  margin-top: 2px !important;
-}
+
 .minwidth-96 {
   min-width: 96px !important;
 }
