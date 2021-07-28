@@ -160,7 +160,7 @@ html {
 // }
 .AllCards,
 v-card {
-  min-height: none !important;
+  min-height: auto !important;
 }
 .AllCards {
   box-shadow: rgba(0, 0, 0, 0.15) 0 5px 15px 0 !important;
@@ -189,7 +189,7 @@ th {
 .v-sheet.v-card,
 .AllCards,
 .v-card {
-  min-height: none !important;
+  min-height: auto !important;
 }
 .padd-12-7 {
   padding: 12px 10px !important;

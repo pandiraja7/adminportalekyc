@@ -51,10 +51,10 @@
     </div>
     <div
       class="marg-t-24 padd-0-16 w-100 mb-8"
-      v-if="this.documentsone.length > 0"
+      v-if="this.reviewList.length > 0"
     >
-      <b-card class="AllCards padd-0 bordradius-5">
-        <table class="w-100">
+      <v-card class="AllCards p-0 bordradius-5">
+        <table class="w-100 padd-0">
           <thead class="">
             <tr class="border-bottom">
               <th class="fsize14 clr-000000 padd-12-7 text-center">S.No</th>
@@ -70,7 +70,7 @@
           <tbody class="">
             <tr
               class="border-bottom"
-              v-for="(item, index) in this.documentsone"
+              v-for="(item, index) in this.reviewList"
               :key="index"
               @click="callpopup(item)"
             >
@@ -83,6 +83,11 @@
               <td class="fsize14 padd-12-7">{{ item.reviewedBy }}</td>
               <td class="fsize14 padd-12-7 text-center">
                 <button
+                  v-bind:class="{
+                    greenColor: item.exactStatus == 'In Process',
+                    orangeColor: item.exactStatus == 'Review',
+                  }"
+                  @click:
                   class="
                     minwidth-104
                     bgrclr-e8f4ff
@@ -90,15 +95,44 @@
                     border-radius3
                     padd-2-10
                   "
-                  @click="previews(item.application_id)"
                 >
                   {{ item.exactStatus }}
                 </button>
+                <!-- <div v-if="item.exactStatus == 'In Process'">
+                  <button
+                     v-bind:class="{}"
+                    class="
+                      minwidth-104
+                      bgrclr-e8f4ff
+                      clr-0060b9
+                      border-radius3
+                      padd-2-10
+                    "
+                  >
+                    {{ item.exactStatus }}
+                  </button>
+                </div>
+                <div v-if="item.exactStatus == 'Review'">
+                  <button
+                    class="
+                      minwidth-104
+                      bgrclr-e8f4ff
+                      clr-0060b9
+                      border-radius3
+                      padd-2-10
+                    "
+                    @click="previews(item.application_id)"
+                  >
+                    {{ item.exactStatus }}
+                  </button>
+                </div> -->
               </td>
             </tr>
           </tbody>
         </table>
-        <v-row justify="center">
+       
+      </v-card>
+       <v-row justify="center">
           <!-- <v-btn
       color="primary"
       dark
@@ -186,7 +220,6 @@
             </v-card>
           </v-dialog>
         </v-row>
-      </b-card>
     </div>
   </div>
 </template>
@@ -206,7 +239,7 @@ export default {
 
   data() {
     return {
-      reviewList: "",
+      reviewList: [],
       dialog: false,
       dataArray: [],
       documentsone: [],
@@ -247,6 +280,10 @@ export default {
 
       if (val.exactStatus == "In Process") {
         this.dialog = true;
+      } else if (val.exactStatus == "Review") {
+        this.dialog = false;
+        this.$router.push("/pancard");
+        localStorage.setItem("app_Id", JSON.stringify(val.application_id));
       } else {
         this.dialog = false;
       }
@@ -263,12 +300,16 @@ export default {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
             // console.log(response['data']['result'][0]['documentSigned']);
-            this.reviewList = response.data["result"];
-            this.reviewList.forEach((element) => {
-              if (element.documentSigned == 1) {
-                this.documentsone.push(element);
+            localStorage.setItem(
+              "applicatioNid",
+              JSON.stringify(response.data["result"])
+            );
+            for(let item of response.data["result"]){
+              if(item.documentSigned== 1){
+                this.reviewList.push(item);
               }
-            });
+            }
+           
           } else {
           }
         }
@@ -281,10 +322,10 @@ export default {
         applicationId: this.currentApplicationId,
       };
       httpService.assign(asSign).then((response) => {
+        
         if (response.status == 200) {
           if (response.data["status"] == 1) {
-            console.log(response);
-            localStorage.setItem("applicationId", this.applicationId);
+
             this.reviewed();
             this.dialog = false;
           } else {
@@ -499,5 +540,13 @@ export default {
 }
 .justify-content-space-between {
   justify-content: space-between;
+}
+.greenColor {
+  background-color: #ebfff8;
+  color: #0d9b6a;
+}
+.orangeColor {
+  background-color: #ffeedd;
+  color: #ff9125;
 }
 </style>

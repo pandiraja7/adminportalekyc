@@ -51,7 +51,7 @@
     </div>
     <div class="marg-t-24 padd-0-16 " v-if="this.reportList.length > 0">
       <b-card class="AllCards padd-0 bordradius-5 mb-8 ">
-        <table class="w-100">
+        <table class="w-100 padd-0 ">
           <thead class="">
             <tr class="border-bottom">
               <th class="fsize14 clr-000000 padd-12-7 text-center">S.No</th>

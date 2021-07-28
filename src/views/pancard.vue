@@ -3,8 +3,8 @@
     <div class="headorder">
       <div class="padd-8-16 clr-282828">
         <label class="fsize16 marg-0 fw-600 clr-000000"
-          >Document Review - {{ this.applicateName }}</label
-        >
+          >Document Review -
+        </label>
       </div>
 
       <div class="marg-r-8 padd-l-16 w-100">
@@ -886,23 +886,26 @@ export default {
       incomerange: "",
       networth: "",
       eduqualification: "",
-      tradingexperience:"",
-      otherbroker:"",
+      tradingexperience: "",
+      otherbroker: "",
     };
   },
   methods: {
     getPanCard() {
       let panCard = {
-        applicationId: JSON.parse(localStorage.getItem("applicateid")),
+        applicationId: this.apllicationId,
       };
       httpService.gETPanCardDetails(panCard).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
-            console.log(response);
-            localStorage.setItem(
-              "applicateName",
-              JSON.stringify(response.data["result"])
-            );
+            this.panNo = response.data.result.pan_card;
+            this.dOb = response.data.result.dob;
+            this.applicateName = response.data.result.applicant_name;
+            this.console.log(response);
+            // localStorage.setItem(
+            //   "applicateName",
+            //   JSON.stringify(response.data["result"])
+            // );
           } else {
             // console.log("user cannot add");
           }
@@ -911,16 +914,20 @@ export default {
     },
     getaddress() {
       let getAdDress = {
-        applicationId: JSON.parse(localStorage.getItem("applicateid")),
+        applicationId: this.apllicationId,
       };
       httpService.gETAddress(getAdDress).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
+            this.addressline1 = response.data.result.address_line_1;
+            this.pincode = response.data.result.pin;
+            this.city = response.data.result.city;
+            this.State = response.data.result.state;
             console.log(response);
-            localStorage.setItem(
-              "geTAddress",
-              JSON.stringify(response.data["result"])
-            );
+            // localStorage.setItem(
+            //   "geTAddress",
+            //   JSON.stringify(response.data["result"])
+            // );
           } else {
             // console.log("user cannot add");
           }
@@ -929,16 +936,20 @@ export default {
     },
     permanentaddress() {
       let permanentAdDress = {
-        applicationId: JSON.parse(localStorage.getItem("applicateid")),
+        applicationId: this.apllicationId,
       };
       httpService.pERmanentADdress(permanentAdDress).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
             console.log(response);
-            localStorage.setItem(
-              "permanentAddress",
-              JSON.stringify(response.data["result"])
-            );
+            this.permanentAddress = response.data.result.address_line_1;
+            this.perpin = response.data.result.pin;
+            this.percity = response.data.result.city;
+            this.perstate = response.data.result.state;
+            // localStorage.setItem(
+            //   "permanentAddress",
+            //   JSON.stringify(response.data["result"])
+            // );
           } else {
             // console.log("user cannot add");
           }
@@ -947,16 +958,13 @@ export default {
     },
     bankdetails() {
       let bank = {
-        applicationId: JSON.parse(localStorage.getItem("applicateid")),
+         applicationId: this.apllicationId,
       };
       httpService.baNkDetails(bank).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
             console.log(response);
-            localStorage.setItem(
-              "bankDetails",
-              JSON.stringify(response.data["result"])
-            );
+            
           } else {
           }
         }
@@ -998,68 +1006,75 @@ export default {
   computed: {},
 
   mounted() {
-    this.applicateName = JSON.parse(localStorage.getItem("applicateName"))[
-      "applicant_name"
-    ];
-    console.log(this.applicateName);
-    this.dOb = JSON.parse(localStorage.getItem("applicateName"))["dateOfBirth"];
-    this.panNo = JSON.parse(localStorage.getItem("applicateName"))["pan_card"];
-    this.addressline1 = JSON.parse(localStorage.getItem("geTAddress"))[
-      "address_line_1"
-    ];
-    this.pincode = JSON.parse(localStorage.getItem("geTAddress"))["pin"];
-    this.State = JSON.parse(localStorage.getItem("geTAddress"))["state"];
-    this.city = JSON.parse(localStorage.getItem("geTAddress"))["city"];
-    this.permanentAddress = JSON.parse(
-      localStorage.getItem("permanentAddress")
-    )["address_line_1"];
-    this.percity = JSON.parse(localStorage.getItem("permanentAddress"))["city"];
-    this.perpin = JSON.parse(localStorage.getItem("permanentAddress"))["pin"];
-    this.perstate = JSON.parse(localStorage.getItem("permanentAddress"))[
-      "state"
-    ];
-    this.iffccode = JSON.parse(localStorage.getItem("bankDetails"))[
-      "ifsc_code"
-    ];
-    this.bankname = JSON.parse(localStorage.getItem("bankDetails"))["bankName"];
-    this.bankaddress = JSON.parse(localStorage.getItem("bankDetails"))[
-      "bankAddress"
-    ];
-    this.micrcode = JSON.parse(localStorage.getItem("bankDetails"))["micrCode"];
-    this.oCcupation = JSON.parse(localStorage.getItem("additional"))[
-      "occupation"
-    ];
-    this.workprofile = JSON.parse(localStorage.getItem("additional"))[
-      "work_profile"
-    ];
-    this.companyname = JSON.parse(localStorage.getItem("additional"))[
-      "company_name"
-    ];
-    this.occupationaddress = JSON.parse(localStorage.getItem("additional"))[
-      "occupation_address"
-    ];
-    this.workexperience = JSON.parse(localStorage.getItem("additional"))[
-      "work_experience"
-    ];
-    this.sourceincome = JSON.parse(localStorage.getItem("additional"))[
-      "source_income"
-    ];
-    this.placeorder = JSON.parse(localStorage.getItem("additional"))[
-      "place_order"
-    ];
-    this.incomerange = JSON.parse(localStorage.getItem("additional"))[
-      "annual_income"
-    ];
-    this.networth = JSON.parse(localStorage.getItem("additional"))["net_worth"];
-    this.eduqualification = JSON.parse(localStorage.getItem("additional"))[
-      "edu_qualification"
-    ];
-    this.tradingexperience = JSON.parse(localStorage.getItem("additional"))[
-      "trading_experience"
-    ];
-        this.otherbroker = JSON.parse(localStorage.getItem("additional"))[
-      "other_broker"
-    ];
+    if (
+      localStorage.getItem("applicatioNid") != undefined ||
+      localStorage.getItem("applicatioNid") != null
+    ) {
+      this.apllicationId = JSON.parse(localStorage.getItem("app_Id"));
+    }
+
+    // this.applicateName = JSON.parse(localStorage.getItem("applicateName"))[
+    //   "applicant_name"
+    // ];
+    // console.log(this.applicateName);
+    // this.dOb = JSON.parse(localStorage.getItem("applicateName"))["dateOfBirth"];
+    // this.panNo = JSON.parse(localStorage.getItem("applicateName"))["pan_card"];
+    // this.addressline1 = JSON.parse(localStorage.getItem("geTAddress"))[
+    //   "address_line_1"
+    // ];
+    // this.pincode = JSON.parse(localStorage.getItem("geTAddress"))["pin"];
+    // this.State = JSON.parse(localStorage.getItem("geTAddress"))["state"];
+    // this.city = JSON.parse(localStorage.getItem("geTAddress"))["city"];
+    // this.permanentAddress = JSON.parse(
+    //   localStorage.getItem("permanentAddress")
+    // )["address_line_1"];
+    // this.percity = JSON.parse(localStorage.getItem("permanentAddress"))["city"];
+    // this.perpin = JSON.parse(localStorage.getItem("permanentAddress"))["pin"];
+    // this.perstate = JSON.parse(localStorage.getItem("permanentAddress"))[
+    //   "state"
+    // ];
+    // this.iffccode = JSON.parse(localStorage.getItem("bankDetails"))[
+    //   "ifsc_code"
+    // ];
+    // this.bankname = JSON.parse(localStorage.getItem("bankDetails"))["bankName"];
+    // this.bankaddress = JSON.parse(localStorage.getItem("bankDetails"))[
+    //   "bankAddress"
+    // ];
+    // this.micrcode = JSON.parse(localStorage.getItem("bankDetails"))["micrCode"];
+    // this.oCcupation = JSON.parse(localStorage.getItem("additional"))[
+    //   "occupation"
+    // ];
+    // this.workprofile = JSON.parse(localStorage.getItem("additional"))[
+    //   "work_profile"
+    // ];
+    // this.companyname = JSON.parse(localStorage.getItem("additional"))[
+    //   "company_name"
+    // ];
+    // this.occupationaddress = JSON.parse(localStorage.getItem("additional"))[
+    //   "occupation_address"
+    // ];
+    // this.workexperience = JSON.parse(localStorage.getItem("additional"))[
+    //   "work_experience"
+    // ];
+    // this.sourceincome = JSON.parse(localStorage.getItem("additional"))[
+    //   "source_income"
+    // ];
+    // this.placeorder = JSON.parse(localStorage.getItem("additional"))[
+    //   "place_order"
+    // ];
+    // this.incomerange = JSON.parse(localStorage.getItem("additional"))[
+    //   "annual_income"
+    // ];
+    // this.networth = JSON.parse(localStorage.getItem("additional"))["net_worth"];
+    // this.eduqualification = JSON.parse(localStorage.getItem("additional"))[
+    //   "edu_qualification"
+    // ];
+    // this.tradingexperience = JSON.parse(localStorage.getItem("additional"))[
+    //   "trading_experience"
+    // ];
+    //     this.otherbroker = JSON.parse(localStorage.getItem("additional"))[
+    //   "other_broker"
+    // ];
 
     this.getPanCard();
 
