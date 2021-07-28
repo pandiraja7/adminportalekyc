@@ -1,5 +1,5 @@
 <template>
-  <div class="lato-font clr-000000">
+  <div class="lato-font  clr-000000">
     <div class="headorder">
       <div class="padd-8-16 clr-282828">
         <label class="fsize16 marg-0 fw-600 clr-000000"
@@ -851,7 +851,6 @@
         </button></span
       >
     </div>
-    <div></div>
   </div>
 </template>
 
@@ -901,7 +900,6 @@ export default {
             this.panNo = response.data.result.pan_card;
             this.dOb = response.data.result.dob;
             this.applicateName = response.data.result.applicant_name;
-            this.console.log(response);
             // localStorage.setItem(
             //   "applicateName",
             //   JSON.stringify(response.data["result"])

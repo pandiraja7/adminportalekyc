@@ -10,7 +10,7 @@
               alt="Logo"
             /> -->
             <img
-              src="..\assets\Philliplogo.svg"
+              src="../assets/Philliplogo.svg"
               class="mt-2 cursor h-28 w-70"
               alt=""
             />
