@@ -1,11 +1,11 @@
 <template>
   <div class="lato-font ">
     <div class="headorder">
-      <div class="padd-8-16 clr-282828">
+      <div class="padd-8-32 clr-282828">
         <label class="fsize16 marg-0 fw-600">Document Review</label>
       </div>
 
-      <div class="marg-r-8 padd-l-16 w-100">
+      <div class="marg-r-8 pl-8 w-100">
         <button class="bttnalign headBtns active mar-right8">All (5)</button>
         <button class="bttnalign headBtns mar-right8">Assigned (10)</button>
         <button class="bttnalign headBtns mar-right8">In progress (5)</button>
@@ -50,7 +50,7 @@
       <hr class="solid2" />
     </div>
     <div
-      class="marg-t-24 padd-0-16 w-100 mb-8"
+      class="marg-t-24 padd-0-32 w-100 mb-8"
       v-if="this.reviewList.length > 0"
     >
       <v-card class="AllCards p-0 bordradius-5">
@@ -69,7 +69,7 @@
           </thead>
           <tbody class="">
             <tr
-              class="border-bottom"
+              class="border-bottom cursor"
               v-for="(item, index) in this.reviewList"
               :key="index"
               @click="callpopup(item)"
@@ -98,34 +98,6 @@
                 >
                   {{ item.exactStatus }}
                 </button>
-                <!-- <div v-if="item.exactStatus == 'In Process'">
-                  <button
-                     v-bind:class="{}"
-                    class="
-                      minwidth-104
-                      bgrclr-e8f4ff
-                      clr-0060b9
-                      border-radius3
-                      padd-2-10
-                    "
-                  >
-                    {{ item.exactStatus }}
-                  </button>
-                </div>
-                <div v-if="item.exactStatus == 'Review'">
-                  <button
-                    class="
-                      minwidth-104
-                      bgrclr-e8f4ff
-                      clr-0060b9
-                      border-radius3
-                      padd-2-10
-                    "
-                    @click="previews(item.application_id)"
-                  >
-                    {{ item.exactStatus }}
-                  </button>
-                </div> -->
               </td>
             </tr>
           </tbody>
@@ -184,7 +156,7 @@
                     bgclr-fff
                     clr-000000
                     border-radius border-input
-                    borderclr-cbcb
+                    borderclr-2E3031
                   "
                   text
                   @click="dialog = false"
@@ -217,14 +189,6 @@
 </template>
 
 <script>
-// export default {
-//   name: "dashboard",
-
-//   data() {
-//     return {};
-//   },
-//   methods: {},
-// };
 import httpService from "../js/http-common-service";
 export default {
   name: "dashboard",
@@ -237,15 +201,10 @@ export default {
       documentsone: [],
       apllicationId: String,
       adminName: String,
-      // name: String,
       name: JSON.parse(localStorage.getItem("userNamePRofile"))["name"],
-      // dialog2: false,
-      // notifications: false,
+
       widgets: false,
-      // items: [
-      //   {
-      //     title: "Click Me",
-      //   },
+  
       dialog: false,
       selectedOption: "default",
       currentApplicationId: "",
@@ -253,22 +212,9 @@ export default {
   },
   methods: {
     callpopup(val) {
-      // console.log(val);
-      // console.log(val.application_id);
-      // console.log(val.name);
+
       this.currentApplicationId = val.application_id;
-      // let asSign = {
-      //   applicationId: val.application_id,
-      //   adminName: val.name,
-      // };
-      // httpService.assign(asSign).then((response) => {
-      //   if (response.status == 200) {
-      //     if (response.data["status"] == 1) {
-      //       console.log(response);
-      //     } else {
-      //     }
-      //   }
-      // });
+
 
       if (val.exactStatus == "In Process") {
         this.dialog = true;
@@ -291,7 +237,6 @@ export default {
       httpService.review(jsondata).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
-            // console.log(response['data']['result'][0]['documentSigned']);
             localStorage.setItem(
               "applicatioNid",
               JSON.stringify(response.data["result"])
@@ -327,23 +272,6 @@ export default {
       this.dialog = false;
     },
 
-    // previews(id) {
-    //   let pReview = {
-    //     adminName: this.selectedOption,
-    //     applicationId: id,
-    //   };
-    //   httpService.applicationstarted(pReview).then((response) => {
-    //     if (response.status == 200) {
-    //       if (response.data["status"] == 1) {
-    //         console.log(response);
-    //         localStorage.setItem("applicateid", JSON.stringify(id));
-    //         this.reviewed();
-    //         this.$router.push("/pancard");
-    //       } else {
-    //       }
-    //     }
-    //   });
-    // },
     previews() {
       this.$router.push("/pancard");
     },
@@ -354,7 +282,6 @@ export default {
   },
 
   mounted() {
-    console.log(JSON.parse(localStorage.getItem("userNamePRofile")));
     this.reviewed();
     if (
       localStorage.getItem("useradminprofile") != undefined ||
@@ -376,15 +303,9 @@ export default {
     httpService.newuser().then((response) => {
       if (response.status == 200) {
         if (response.data["status"] == 1) {
-          console.log(response);
           this.dataArray = response.data.result;
-          console.log(this.dataArray);
-          // localStorage.setItem(
-          //   "userNamePRofile",
-          //   JSON.stringify(response.data["result"])
-          // );
+        
         } else {
-          console.log("something went wrong");
         }
       }
     });
@@ -393,43 +314,6 @@ export default {
 </script>
 
 <style>
-.solid1,
-.solid2 {
-  border: 0;
-  border-top: 1px solid #a2a2a2;
-  margin: 7px 16px 0 !important;
-}
-
-
-/* search */
-.marg-l-5 {
-  margin-left: 5px;
-}
-.marg-b-2 {
-  margin-bottom: 2px;
-}
-/* end */
-
-
-.marg0-2-8 {
-  margin: 0px 8px 2px 8px;
-}
-/* refershicon */
-.marg0-3-8 {
-  margin: 0px 8px 3px 8px;
-}
-.h-20 {
-  height: 20px;
-}
-.w-20 {
-  width: 20px;
-}
-/* end */
-
-.border-bottom {
-  border-bottom: 1px solid #e1e1e1;
-}
-
 .bgrclr-e8f4ff {
   background-color: #e8f4ff;
 }
@@ -440,21 +324,6 @@ export default {
 .minwidth-104 {
   min-width: 104px;
 }
-.bgrclr-daf0eb {
-  background-color: #cffada;
-}
-.clr-0d9b6a {
-  color: #0d9b6a;
-}
-.borderclr-daf0eb {
-  border-color: 1px #daf6e1;
-}
-.padd-2-10 {
-  padding: 2px 10px;
-}
-.fsize14 {
-  font-size: 14px;
-}
 .padd-l-39 {
   margin-left: 39px;
 }
@@ -463,17 +332,6 @@ export default {
 }
 .w-120 {
   width: 120px !important;
-}
-.h-48 {
-  height: 48px !important;
-}
-.borderclr-cbcb {
-  border: 1px solid#2E3031 !important;
-
-  box-shadow: none !important;
-}
-.fsize16 {
-  font-size: 16px !important;
 }
 .p-y-14 {
   padding-top: 14px !important;

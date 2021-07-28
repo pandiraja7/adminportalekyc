@@ -105,33 +105,6 @@
               </div>
             </router-link>
           </div>
-
-          <!-- <div id="hold">
-            <router-link
-              to="/esign"
-              active-class="active"
-              tag="button"
-              exact
-              class="side-btn logoIcon"
-            >
-              <div class="link-container">
-                <div
-                  class="d-block logoIcon text-center mx-auto mb-4 w-64"
-                  id="logo1"
-                >
-                  <div>
-                    <img
-                      class="Location logoIcon h-24 w-24"
-                      src="..\assets\activation.svg"
-                      alt=""
-                    />
-                  </div>
-                  <div class="side-label-dashact logoLabel active">E-sign</div>
-                </div>
-              </div>
-            </router-link>
-          </div> -->
-
           <div id="fund">
             <router-link
               to="/rectify"
@@ -347,9 +320,6 @@ export default {
 
 .h-24 {
   height: 24px;
-}
-.w-24 {
-  width: 24px;
 }
 .let-space {
   letter-spacing: 0.4px;
