@@ -107,6 +107,7 @@ export default {
             headers: this.headers,
         });
     },
+
     PermanentAddressApproveOrReject(jsonObj) {
         return AXIOS.post('/admin/respondPermanentAddress', jsonObj, {
             headers: this.headers,

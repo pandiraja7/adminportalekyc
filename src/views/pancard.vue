@@ -1020,20 +1020,20 @@ export default {
       });
     },
     // get uploaded details
-    getUploadFiles() {
-      let attachFile = {
-        applicationId: JSON.parse(localStorage.getItem("applicateid")),
-      };
-      httpService.uploadFiles(attachFile).then((response) => {
-        if (response.status == 200) {
-          if (response.data["status"] == 1) {
-            console.log(response);
-          } else {
-            console.log("user cannot add");
-          }
-        }
-      });
-    },
+    // getUploadFiles() {
+    //   let attachFile = {
+    //     applicationId: JSON.parse(localStorage.getItem("applicateid")),
+    //   };
+    //   httpService.uploadFiles(attachFile).then((response) => {
+    //     if (response.status == 200) {
+    //       if (response.data["status"] == 1) {
+    //         console.log(response);
+    //       } else {
+    //         console.log("user cannot add");
+    //       }
+    //     }
+    //   });
+    // },
     //rejectPan card
     panReject() {
       let json = {
