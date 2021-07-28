@@ -193,6 +193,7 @@ th {
   border-radius: 2px !important;
   border: 1px solid #1f3565 !important;
 }
+
 .custom-select {
   display: inline-block;
   height: 40px !important;
