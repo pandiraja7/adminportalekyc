@@ -127,7 +127,7 @@ export default {
       branchCode: null,
       remishreeCode: null,
       role: 10,
-      status: "In Process",
+      status: "Rectifi",
     };
     httpService.rectify(jsondata).then((response) => {
       if (response.status == 200) {

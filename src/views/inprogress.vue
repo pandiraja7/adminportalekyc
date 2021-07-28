@@ -26,7 +26,7 @@
           Bank Details (9)
         </button>
         <button class="bttnalign headBtns clr-000000 mar-right8">
-          Documments (11)
+          Documents (11)
         </button>
         <span class="img" style="float: right">
           <span class="search-box">
@@ -70,7 +70,7 @@
     </div>
     <div class="marg-t-24 padd-0-16" v-if="this.documents.length > 0">
       <b-card class="AllCards padd-0 bordradius-5">
-        <table class="w-100">
+        <table class="w-100 padd-0  ">
           <thead class="">
             <tr class="border-bottom">
               <th class="fsize14 clr-000000 padd-12-7 text-center fw-bold">
@@ -98,7 +98,7 @@
               <td class="fsize14 padd-12-7">{{ item.mobile_number }}</td>
               <td class="fsize14 padd-12-7">
                 <span class="dot"></span>
-                <span class="marg-l-4"> {{item.status}}</span>
+                <span class="marg-l-4"> {{ item.status }}</span>
               </td>
               <td class="fsize14 padd-12-7">{{ item.createdAt }}</td>
               <td class="fsize14 padd-12-7">{{ item.lastUpdatedAt }}</td>
@@ -117,8 +117,7 @@ export default {
 
   data() {
     return {
-      progressList: "",
-      documents:[],
+      documents: [],
     };
   },
   methods: {},
@@ -138,26 +137,25 @@ export default {
       status: "In Process",
     };
 
-    // if (this.progressList.documentSigned == 0) {
-      httpService.progress(jsondata).then((response) => {
-        if (response.status == 200) {
-          if (response.data["status"] == 1) {
-            console.log(response);
-            this.progressList = response.data["result"];
-            this.progressList.forEach(element => {
-              if(element.documentSigned == 0){
-                this.documents.push(element);
-              }
-            });
-            localStorage.setItem(
-              "useradminprofile",
-              JSON.stringify(response.data["result"])
-            );
-          } else {
-            console.log(response.data["reason"]);
+    httpService.progress(jsondata).then((response) => {
+      if (response.status == 200) {
+        if (response.data["status"] == 1) {
+          console.log(response);
+          for(let item of response.data["result"]){
+            if(item.documentSigned == 0){
+              this.documents.push(item);
+            }
           }
+        
+          localStorage.setItem(
+            "useradminprofile",
+            JSON.stringify(response.data["result"])
+          );
+        } else {
+          console.log(response.data["reason"]);
         }
-      });
+      }
+    });
     // }
   },
 };
@@ -267,5 +265,8 @@ export default {
 }
 .marg-l-4 {
   margin-left: 6px !important;
+}
+.card-body {
+  padding: 0px !important ;
 }
 </style>
