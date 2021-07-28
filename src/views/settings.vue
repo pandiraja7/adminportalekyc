@@ -78,12 +78,6 @@ export default {
   background: #e6e6e6;
   padding: 3px 12px;
 }
-/* .headBtns.active {
-  background-color: #1f3565 !important;
-  color: #fff !important;
-  border-radius: 2px !important;
-  border: 1px solid #1f3565 !important;
-} */
 .solid1,
 .solid2 {
   border: 0;

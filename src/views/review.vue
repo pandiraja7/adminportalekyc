@@ -393,37 +393,15 @@ export default {
 </script>
 
 <style>
-.btn32 {
-  /* margin-left: 8px !important; */
-  border: 1px solid #e6e6e6 !important;
-  font-size: 12px !important;
-  color: #282828 !important;
-  background: #e6e6e6 !important;
-}
 .solid1,
 .solid2 {
   border: 0;
   border-top: 1px solid #a2a2a2;
   margin: 7px 16px 0 !important;
 }
-/* search box css */
-.searchwhole {
-  margin: 0;
-  position: relative;
-  padding: 4px 0 6px;
-  border: 1px solid #ededed !important;
-  border-radius: 4px;
-  transition: width 2s;
-  transition-timing-function: cubic-bezier(0.1, 0.7, 1, 0.1);
-}
+
 
 /* search */
-.h-16 {
-  height: 16px;
-}
-.w-16 {
-  width: 16px;
-}
 .marg-l-5 {
   margin-left: 5px;
 }
@@ -432,28 +410,7 @@ export default {
 }
 /* end */
 
-.search-box input {
-  transition-duration: 0.3s;
-}
-.search-box input:focus {
-  width: 200px;
-}
-.search-box {
-  margin: 0 8px;
-}
-.placeholdsearch {
-  font-size: 13px;
-  height: 24px;
-  margin-left: 5px;
-  width: 100px;
-  color: #56585a;
-}
-.search {
-  color: #0075e1 !important;
-  font-size: 12px !important;
-  cursor: pointer;
-  margin-right: 16px !important;
-}
+
 .marg0-2-8 {
   margin: 0px 8px 2px 8px;
 }
