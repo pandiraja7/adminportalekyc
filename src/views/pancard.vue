@@ -1,5 +1,5 @@
 <template>
-  <div class="lato-font  clr-000000">
+  <div class="lato-font clr-000000">
     <div class="headorder">
       <div class="padd-8-32 clr-282828">
         <label class="fsize16 marg-0 fw-600 clr-000000"
@@ -106,6 +106,7 @@
                   outline-none
                   clr-e1e1e1
                 "
+                @click="getUploadFiles()"
               >
                 <option class="fsize12" value="null" role.selected hidden>
                   PAN CARD
@@ -129,7 +130,9 @@
           </span>
         </div>
 
-        <div class="w-426 h-268 bdrclr-2e3031 ml-4 mt-6"></div>
+        <div class="w-426 h-268 bdrclr-2e3031 ml-4 mt-6">
+          <!-- <img v-bind:src="require('../assets/' + img)" /> -->
+        </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 padd-0 mt-6">
         <div class="fsize12 clr-56585a">Name</div>
@@ -906,7 +909,6 @@ export default {
     };
   },
   methods: {
-
     callModal() {
       $("#exampleModal").modal("show");
     },
@@ -1006,6 +1008,23 @@ export default {
         }
       });
     },
+    // get uploaded details
+    getUploadFiles() {
+      let attachFile = {
+        applicationId: this.apllicationId,
+      };
+      httpService.uploadFiles(attachFile).then((response) => {
+        if (response.status == 200) {
+          if (response.data["status"] == 1) {
+            console.log(response);
+          } else {
+            console.log("user cannot add");
+          }
+        }
+      });
+    },
+    //rejectPan card
+
     panReject() {
       let json = {
         applicationId: this.apllicationId,

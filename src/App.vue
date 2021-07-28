@@ -438,6 +438,7 @@ th {
 .search-box {
   margin: 0 8px;
 }
+
 .welcomeText {
   color: #282828;
   font-weight: 600;
