@@ -66,6 +66,9 @@ html {
 .f-right {
   float: right;
 }
+.justify-content-flex-end{
+  justify-content:flex-end;
+}
 
 .clr-000000 {
   color: #000000;

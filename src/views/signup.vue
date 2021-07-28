@@ -6,21 +6,21 @@
       </v-flex>
       <v-flex xs12 sm12 md6 lg6 xl6 align-center justify-center>
         <v-layout row wrap align-center justify-center marg-0>
+          <form @submit.prevent='suBmit()' >
           <div class="custom-card padd-16-24 bor-radius boxshad back-color">
             <div class="Img-div">
               <img src="@/assets/Logo.svg" class="widthHeight" alt="Logo" />
             </div>
 
-            <label for="" class="custom-head mb-2 marg-0"
+            <label for="" class="custom-head mb-2 m-0"
               >EKYC admin panel</label
             >
-            <label for="" class="custom-sub-head mb-2 w-100 marg-0"
+            <label for="" class="custom-sub-head mb-2 w-100 m-0"
               >Manage your eKYC System</label
             >
-            <form method="post" class="w-100" @submit.prevent="suBmit">
               <div class="w-100 h-72">
                 <div class="l-height">
-                  <label class="fsize14 l-height marg-0">User Name</label>
+                  <label class="fsize14 l-height m-0 pl-2">Enter Email</label>
                 </div>
                 <input
                   type="text"
@@ -56,7 +56,7 @@
               </div>
               <div class="w-100 h-72 mb-4">
                 <div class="l-height">
-                  <label class="fsize14 l-height marg-0">Password</label>
+                  <label class="fsize14 l-height m-0 pl-2">Password</label>
                 </div>
                 <div class="pswborder bor-radius w-100 h-40">
                   <span>
@@ -118,19 +118,7 @@
                   >
                 </div> -->
               </div>
-            </form>
-
             <div class="">
-              <!-- <router-link
-                to="/dashboard"
-                active-class="active"
-                tag="button"
-                exact
-                class="bor-radius w-100 h-40 fsize14bold-btn"
-              >
-                Submit</router-link
-              > -->
-
               <button
                 class="bor-radius w-100 h-40 fsize14bold-btn"
                 @click="suBmit()"
@@ -150,6 +138,7 @@
               >
             </div>
           </div>
+          </form>
         </v-layout>
       </v-flex>
     </v-layout>
