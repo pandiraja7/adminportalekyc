@@ -731,7 +731,6 @@ export default {
       if (this.$v.$invalid) {
         return;
       }
-
       let jsondata = {
         name: this.name,
         email: this.email,
