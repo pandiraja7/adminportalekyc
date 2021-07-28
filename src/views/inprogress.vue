@@ -140,7 +140,7 @@ export default {
     httpService.progress(jsondata).then((response) => {
       if (response.status == 200) {
         if (response.data["status"] == 1) {
-          console.log(response);
+          // console.log(response);
           for(let item of response.data["result"]){
             if(item.documentSigned == 0){
               this.documents.push(item);
@@ -152,7 +152,7 @@ export default {
             JSON.stringify(response.data["result"])
           );
         } else {
-          console.log(response.data["reason"]);
+          // console.log(response.data["reason"]);
         }
       }
     });

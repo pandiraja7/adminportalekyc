@@ -710,7 +710,7 @@ export default {
       httpService.newuser().then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
-            console.log(response);
+            // console.log(response);
             localStorage.setItem(
               "userNamePRofile",
               JSON.stringify(response.data["result"])
@@ -743,7 +743,7 @@ export default {
       httpService.newadmin(jsondata).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
-            console.log(response);
+            // console.log(response);
             //this.newuserList = response.data["result"];
           } else {
             console.log("user cannot add");
