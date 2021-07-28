@@ -725,6 +725,7 @@ export default {
         }
       });
     },
+    
     addnewuser() {
       this.submitted = true;
       this.$v.$touch();
