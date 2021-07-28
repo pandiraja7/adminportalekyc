@@ -1,5 +1,5 @@
 <template>
-  <div class="lato-font">
+  <div class="lato-font ">
     <div class="headorder">
       <div class="padd-8-16 clr-282828">
         <label class="fsize16 marg-0 fw-600">Document Review</label>
@@ -133,14 +133,6 @@
        
       </v-card>
        <v-row justify="center">
-          <!-- <v-btn
-      color="primary"
-      dark
-      @click.stop="dialog = true"
-    >
-      Open Dialog
-    </v-btn> -->
-
           <v-dialog v-model="dialog" max-width="600" style="height: 250px">
             <v-card class="padd-0">
               <div
@@ -370,12 +362,7 @@ export default {
     ) {
       this.apllicationId = JSON.parse(localStorage.getItem("useradminprofile"));
     }
-    // console.log(this.apllicationId);
-    //  assigned service
-    // localStorage.setItem(
-    //   "applicateid",
-    //   JSON.stringify(response.data["result"])
-    // );
+
 
     if (
       localStorage.getItem("adminloginprofile") != undefined ||

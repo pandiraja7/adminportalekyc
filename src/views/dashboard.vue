@@ -1,6 +1,6 @@
 <template>
-  <div class="lato-font clr-000000">
-    <div class="headorder">
+  <div class="">
+    <div class="lato-font clr-000000 headorder">
       <div class="welcomeText">
         <label class="fsize16 marg-0 clr-000000"
           >Welcome, <span class="">Rajamani</span></label

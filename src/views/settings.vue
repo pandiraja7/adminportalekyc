@@ -1,11 +1,10 @@
 <template>
-  <div class="lato-font">
-    <div class="headorder">
+    <div class="headorder lato-font ">
       <div class="padd-8-16 clr-282828">
         <label class="fsize16 marg-0 fw-600">Settings</label>
       </div>
 
-      <div class="marg-r-8 padd-l-16 w-100">
+      <div class="marg-r-8 pl-8 w-100">
         <button class="bttnalign headBtns marg-r-8 active">All (5)</button>
         <button class="bttnalign headBtns marg-r-8 ">Requsted (10)</button>
         <button class="bttnalign headBtns ">Signed (5)</button>
@@ -50,7 +49,6 @@
       </div>
       <hr class="solid2" />
     </div>
-  </div>
 </template>
 
 <script>
@@ -90,7 +88,7 @@ export default {
 .solid2 {
   border: 0;
   border-top: 1px solid #a2a2a2;
-  margin: 7px 16px 0 !important;
+  margin: 7px 0px 0 16px !important;
 }
 /* search box css */
 .searchwhole {
@@ -122,7 +120,7 @@ export default {
   color: #0075e1 !important;
   font-size: 12px !important;
   cursor: pointer;
-  margin-right: 16px !important;
+  margin-right: 32px;
 }
 .marg0-2-8 {
   margin: 0px 8px 2px 8px;
@@ -138,4 +136,7 @@ export default {
   width: 20px;
 }
 /* end */
+.solid2{
+  margin: 7px 32px 0px 32px !important;
+}
 </style>
