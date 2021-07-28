@@ -102,11 +102,15 @@ export default {
             headers: this.headers,
         });
     },
-    panReject(jsonObj) {
+    panApproveOrReject(jsonObj) {
         return AXIOS.post('/admin/respondPanCard', jsonObj, {
             headers: this.headers,
         });
+    },
+    PermanentAddressApproveOrReject(jsonObj) {
+        return AXIOS.post('/admin/respondPermanentAddress', jsonObj, {
+            headers: this.headers,
+        });
     }
-
 
 };
