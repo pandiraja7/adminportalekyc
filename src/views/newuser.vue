@@ -725,13 +725,13 @@ export default {
         }
       });
     },
+    
     addnewuser() {
       this.submitted = true;
       this.$v.$touch();
       if (this.$v.$invalid) {
         return;
       }
-
       let jsondata = {
         name: this.name,
         email: this.email,
