@@ -84,7 +84,7 @@
               <td class="fsize14 padd-12-7 text-center">
                 <button
                   v-bind:class="{
-                    greenColor: item.exactStatus == 'In Process',
+                    greenColor: item.exactStatus == 'Assigned',
                     orangeColor: item.exactStatus == 'Review',
                   }"
                   @click:
@@ -216,7 +216,7 @@ export default {
       this.currentApplicationId = val.application_id;
 
 
-      if (val.exactStatus == "In Process") {
+      if (val.exactStatus == "Assigned") {
         this.dialog = true;
       } else if (val.exactStatus == "Review") {
         this.dialog = false;

@@ -108,10 +108,13 @@ export default {
         });
     },
 
-    PermanentAddressApproveOrReject(jsonObj) {
-        return AXIOS.post('/admin/respondPermanentAddress', jsonObj, {
+    addressApproveOrReject(jsonObj) {
+        return AXIOS.post('/admin/respondCommunicationAddress', jsonObj, {
             headers: this.headers,
         });
+    },
+    permanentApproveOrReject(jsonObj) {
+    
     }
 
 };
