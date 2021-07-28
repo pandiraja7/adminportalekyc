@@ -23,9 +23,6 @@
         >
           PAN CARD
         </button>
-        <!-- <button class="bttnalign marg-l-16 headBtns clr-000000 mar-right8">
-          Basic Info
-        </button> -->
         <button
           class="bttnalign headBtns clr-000000 mar-right8 showSingle"
           @click="getaddress()"
@@ -178,6 +175,42 @@
 
           <label class="marg-0 pl-2 valign-top fsize14"> {{ this.dOb }} </label>
         </div>
+      </div>
+      <div class="row m-0 mt-10 mb-4 justify-content-flex-end">
+        <span class="fsize14"
+          ><button
+            type="button"
+            class="
+              padd-0-16
+              h-40
+              bgclr-fff
+              clr-2E3031
+              border-radius
+              bdrclr-2e3031
+              minwidth-96
+              mr-4
+            "
+            data-toggle="modal"
+            data-target="#exampleModal"
+          >
+            Reject
+          </button>
+        </span>
+        <span class="fsize14 pr-16"
+          ><button
+            class="
+              padd-0-16
+              h-40
+              bgrclr-007AFF
+              border-radius
+              bdrclr-007aff
+              clr-fff
+              minwidth-96
+            "
+          >
+            Approve
+          </button></span
+        >
       </div>
     </div>
 
@@ -495,6 +528,7 @@
         </div>
       </div>
     </div>
+
     <div class="row m-0 targetDiv" id="div5" style="display: none">
       <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0 padd-0">
         <div class="h-64 ml-4 mt-6">
@@ -732,126 +766,87 @@
         </div>
       </div>
     </div>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content model-width model-height">
+          <div class="modal-header model-header-align bdr-none">
+            <span class="modal-title fsize18 clr-000000" id="exampleModalLabel">
+              Are you sure you want to reject this user?
+            </span>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
 
-    <div class="row m-0 f-right mt-12 mb-4">
-      <span class="fsize14"
-        ><button
-          type="button"
-          class="
-            padd-0-16
-            h-40
-            bgclr-fff
-            clr-2E3031
-            border-radius
-            bdrclr-2e3031
-            minwidth-96
-            mr-4
-          "
-          data-toggle="modal"
-          data-target="#exampleModal"
-        >
-          Reject
-        </button>
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content model-width model-height">
-              <div class="modal-header model-header-align bdr-none">
-                <span
-                  class="modal-title fsize18 clr-000000"
-                  id="exampleModalLabel"
-                >
-                  Are you sure you want to reject this user?
-                </span>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-
-              <div class="padd-16-40">
-                <div class="modal-body p-0 l-height32">
-                  Add the reason for rejecting the Aashil Patel.
-                </div>
-                <div>
-                  <form>
-                    <textarea
-                      class="
-                        padd-12-16-20-16
-                        w-100
-                        bdr-cbcbcb
-                        mt-2
-                        border-radius
-                        h-80
-                        outline-none
-                      "
-                      placeholder="Type here"
-                    >
-                    </textarea>
-                  </form>
-                </div>
-              </div>
-              <div class="modal-footer bdr-none">
-                <button
-                  type="button"
+          <div class="padd-16-40">
+            <div class="modal-body p-0 l-height32">
+              Add the reason for rejecting the Aashil Patel.
+            </div>
+            <div>
+              <form>
+                <textarea
                   class="
-                    h-40
-                    w-128
-                    clr-2E3031
-                    bgclr-fff
-                    bdrclr-2e3031
+                    padd-12-16-20-16
+                    w-100
+                    bdr-cbcbcb
+                    mt-2
                     border-radius
+                    h-80
+                    outline-none
                   "
-                  data-dismiss="modal"
+                  placeholder="Type here"
+                  v-model="comments"
                 >
-                  Close
-                </button>
-                <button
-                  type="button"
-                  class="
-                    w-128
-                    h-40
-                    bgrclr-007AFF
-                    border-radius
-                    bdrclr-007aff
-                    clr-fff
-                    ml-4
-                  "
-                >
-                  Submit
-                </button>
-              </div>
+                </textarea>
+              </form>
             </div>
           </div>
+          <div class="modal-footer bdr-none">
+            <button
+              type="button"
+              class="
+                h-40
+                w-128
+                clr-2E3031
+                bgclr-fff
+                bdrclr-2e3031
+                border-radius
+              "
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="
+                w-128
+                h-40
+                bgrclr-007AFF
+                border-radius
+                bdrclr-007aff
+                clr-fff
+                ml-4
+              "
+              @click='panReject()'
+            >
+              Submit
+            </button>
+          </div>
         </div>
-      </span>
-      <span class="fsize14 pr-16"
-        ><button
-          class="
-            padd-0-16
-            h-40
-            bgrclr-007AFF
-            border-radius
-            bdrclr-007aff
-            clr-fff
-            minwidth-96
-          "
-        >
-          Approve
-        </button></span
-      >
+      </div>
     </div>
-    <div></div>
   </div>
 </template>
 
@@ -888,9 +883,11 @@ export default {
       eduqualification: "",
       tradingexperience: "",
       otherbroker: "",
+      comments: "",
     };
   },
   methods: {
+    // get Pan details
     getPanCard() {
       let panCard = {
         applicationId: this.apllicationId,
@@ -901,17 +898,13 @@ export default {
             this.panNo = response.data.result.pan_card;
             this.dOb = response.data.result.dob;
             this.applicateName = response.data.result.applicant_name;
-            this.console.log(response);
-            // localStorage.setItem(
-            //   "applicateName",
-            //   JSON.stringify(response.data["result"])
-            // );
+            console.log(response);
           } else {
-            // console.log("user cannot add");
           }
         }
       });
     },
+    // get address details
     getaddress() {
       let getAdDress = {
         applicationId: this.apllicationId,
@@ -934,6 +927,7 @@ export default {
         }
       });
     },
+    // get permanentAddress details
     permanentaddress() {
       let permanentAdDress = {
         applicationId: this.apllicationId,
@@ -952,6 +946,7 @@ export default {
         }
       });
     },
+    // get bank details
     bankdetails() {
       let bank = {
         applicationId: this.apllicationId,
@@ -970,6 +965,7 @@ export default {
         }
       });
     },
+    // get additional details
     additionaldetail() {
       let additional = {
         applicationId: this.apllicationId,
@@ -995,24 +991,35 @@ export default {
         }
       });
     },
-
-
-    getUploadFiles() {
-      let attachFile = {
-        applicationId: JSON.parse(localStorage.getItem("applicateid")),
+    // get uploaded details
+    // getUploadFiles() {
+    //   let attachFile = {
+    //     applicationId: JSON.parse(localStorage.getItem("applicateid")),
+    //   };
+    //   httpService.uploadFiles(attachFile).then((response) => {
+    //     if (response.status == 200) {
+    //       if (response.data["status"] == 1) {
+    //         console.log(response);
+    //       } else {
+    //         console.log("user cannot add");
+    //       }
+    //     }
+    //   });
+    // },
+    //rejectPan card
+    panReject() {
+      let json = {
+        applicationId: this.apllicationId,
+        isApprove: 0,
+        isRejected: 1,
+        comments: this.comments,
       };
-      httpService.uploadFiles(attachFile).then((response) => {
-        if (response.status == 200) {
-          if (response.data["status"] == 1) {
-            console.log(response);
-          } else {
-            console.log("user cannot add");
-          }
-        }
+      httpService.panReject(json).then((response) => {
+        console.log(response);
+        // document.getElementById("exampleModal").style.display = "none";
       });
     },
   },
-  computed: {},
 
   mounted() {
     if (
@@ -1021,9 +1028,7 @@ export default {
     ) {
       this.apllicationId = JSON.parse(localStorage.getItem("app_Id"));
     }
-
     this.getPanCard();
-
     jQuery(function () {
       jQuery("#showSingle").click(function () {
         jQuery(".targetDiv").show();

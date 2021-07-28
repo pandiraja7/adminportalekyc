@@ -175,7 +175,7 @@
                   aria-label="Default select example"
                   v-model="selectedOption"
                 >
-                  <option selected hidden>Choose any one</option>
+                  <option value='default' hidden>Choose any one</option>
                   <option v-for="item in this.dataArray" :key="item.name">
                     {{ item.name }}
                   </option>
@@ -255,7 +255,7 @@ export default {
       //     title: "Click Me",
       //   },
       dialog: false,
-      selectedOption: "",
+      selectedOption: "default",
       currentApplicationId: "",
     };
   },

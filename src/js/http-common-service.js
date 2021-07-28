@@ -102,12 +102,9 @@ export default {
             headers: this.headers,
         });
     },
-    // approveBankdetails(jsonObj) {
-    //     return AXIOS.post('/admin/respondBankAccountDetails ', jsonObj, {
-    //         headers: this.headers,
-    //     });
-    // },
-
-
-
+    panReject(jsonObj) {
+        return AXIOS.post('/admin/respondPanCard', jsonObj, {
+            headers: this.headers,
+        });
+    },
 };
