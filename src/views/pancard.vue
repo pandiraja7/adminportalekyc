@@ -1,7 +1,7 @@
 <template>
   <div class="lato-font clr-000000">
     <div class="headorder">
-      <div class="padd-8-16 clr-282828">
+      <div class="padd-8-32 clr-282828">
         <label class="fsize16 marg-0 fw-600 clr-000000"
           >Document Review -
         </label>
@@ -68,15 +68,12 @@
               </span>
             </span>
           </span>
-          <!-- <span class="vl"></span> -->
           <span class="downlo" id="btnExport"
             ><img
               class="marg0-3-8 h-20 w-20"
               src="@/assets/downloadIcon.svg"
               alt=""
           /></span>
-
-          <!-- <span class="vl"></span> -->
 
           <span class="search"
             ><img
@@ -106,6 +103,7 @@
                   outline-none
                   clr-e1e1e1
                 "
+                @click="getUploadFiles()"
               >
                 <option class="fsize12" value="null" role.selected hidden>
                   PAN CARD
@@ -129,7 +127,9 @@
           </span>
         </div>
 
-        <div class="w-426 h-268 bdrclr-2e3031 ml-4 mt-6"></div>
+        <div class="w-426 h-268 bdrclr-2e3031 ml-4 mt-6">
+          <!-- <img v-bind:src="require('../assets/' + img)" /> -->
+        </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 padd-0 mt-6">
         <div class="fsize12 clr-56585a">Name</div>
@@ -1020,13 +1020,8 @@ export default {
             this.pincode = response.data.result.pin;
             this.city = response.data.result.city;
             this.State = response.data.result.state;
-            console.log(response);
-            // localStorage.setItem(
-            //   "geTAddress",
-            //   JSON.stringify(response.data["result"])
-            // );
+        
           } else {
-            // console.log("user cannot add");
           }
         }
       });
@@ -1045,13 +1040,11 @@ export default {
       httpService.pERmanentADdress(permanentAdDress).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
-            console.log(response);
             this.permanentAddress = response.data.result.address_line_1;
             this.perpin = response.data.result.pin;
             this.percity = response.data.result.city;
             this.perstate = response.data.result.state;
           } else {
-            // console.log("user cannot add");
           }
         }
       });
@@ -1074,8 +1067,6 @@ export default {
             this.bankname = response.data.result.bankName;
             this.bankaddress = response.data.result.bankAddress;
             this.micrcode = response.data.result.micrCode;
-
-            console.log(response);
           } else {
           }
         }
@@ -1095,7 +1086,6 @@ export default {
       httpService.aDDitionalDetails(additional).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
-            console.log(response);
             this.oCcupation = response.data.result.occupation;
             this.workprofile = response.data.result.work_profile;
             this.companyname = response.data.result.company_name;
@@ -1113,7 +1103,7 @@ export default {
         }
       });
     },
-    //rejectPan 
+
     panReject() {
       let json = {
         applicationId: this.apllicationId,
@@ -1123,7 +1113,9 @@ export default {
       };
       httpService.panApproveOrReject(json).then((response) => {
         if (response.status == 200 && response.data.message == "Success") {
+
           // console.log(response);
+
           this.closeModal();
           this.comments = "";
           this.getaddress();
@@ -1146,8 +1138,10 @@ export default {
         };
         httpService.panApproveOrReject(json).then((response) => {
           if (response.status == 200 && response.data.message == "Success") {
+
             // console.log(response);
             this.getaddress();
+
           }
         });
       }
@@ -1225,76 +1219,13 @@ export default {
       this.apllicationId = JSON.parse(localStorage.getItem("app_Id"));
     }
     this.getPanCard();
-    // $(document).ready(function () {
-    //   $(".headBtns").on("click", function () {
-    //     $(".headBtns").removeClass("active");
-    //     $(this).addClass("active");
-    //   });
-    // });
   },
 };
 </script>
 
 <style>
-.solid1,
-.solid2 {
-  border: 0;
-  border-top: 1px solid #a2a2a2;
-  margin: 7px 16px 0 !important;
-}
-.padd-0-16 {
-  padding: 0px 16px;
-}
-.searchwhole {
-  margin: 0;
-  position: relative;
-  padding: 4px 0 6px;
-  border: 1px solid #ededed !important;
-  border-radius: 4px;
-  transition: width 2s;
-  transition-timing-function: cubic-bezier(0.1, 0.7, 1, 0.1);
-}
-/* search */
-.h-16 {
-  height: 16px;
-}
-.w-16 {
-  width: 16px;
-}
 .w-280 {
   width: 280px !important;
-}
-.marg-l-5 {
-  margin-left: 5px;
-}
-.search-box input {
-  transition-duration: 0.3s;
-}
-.search-box input:focus {
-  width: 200px;
-}
-.search-box {
-  margin: 0 8px;
-}
-.placeholdsearch {
-  font-size: 13px;
-  height: 24px;
-  margin-left: 5px;
-  width: 100px;
-  color: #56585a;
-}
-.search {
-  color: #0075e1 !important;
-  font-size: 12px !important;
-  cursor: pointer;
-  margin-right: 16px !important;
-}
-
-.h-20 {
-  height: 20px;
-}
-.w-20 {
-  width: 20px;
 }
 .clr-56585a {
   color: #56585a;
@@ -1310,12 +1241,6 @@ export default {
 }
 .bdrclr-007aff {
   border: 1px solid #007aff;
-}
-.bgclr-fff {
-  background-color: #fff;
-}
-.bdrclr-2e3031 {
-  border: 1px solid #2e3031;
 }
 .model-header-align {
   width: 600px !important;
@@ -1342,9 +1267,7 @@ export default {
 .w-128 {
   width: 128px;
 }
-.marg-t-2 {
-  margin-top: 2px !important;
-}
+
 .minwidth-96 {
   min-width: 96px !important;
 }

@@ -1,33 +1,33 @@
 <template>
   <div class="">
     <div class="lato-font clr-000000 headorder">
-      <div class="welcomeText">
+      <div class="welcomeText padd-8-32">
         <label class="fsize16 marg-0 clr-000000"
           >Welcome, <span class="">Rajamani</span></label
         >
       </div>
 
       <div class="labels">
-        <button class="btn32-mar-l16 headBtns active clr-000000">
+        <button class="btn32-mar-l16 ml-8 headBtns active clr-000000">
           Dashboard
         </button>
       </div>
       <hr class="solid2" />
-      <div class="padd-0-16 marg-t-24">
+      <div class="padd-0-32 marg-t-24">
         <b-card class="AllCards padd-0 bordradius-5">
           <div class="chart-wrapper echarts-align">
             <IEcharts :option="line"></IEcharts>
           </div>
         </b-card>
       </div>
-      <div class="marg-t-24 padd-0-16">
+      <div class="marg-t-24 padd-0-32">
         <b-card class="AllCards padd-0 bordradius-5">
           <div class="chart-wrapper echarts-align">
             <IEcharts :option="bar"></IEcharts>
           </div>
         </b-card>
       </div>
-      <div class="padd-0-16 marg-t-24 padd-b-70">
+      <div class="padd-0-32 marg-t-24 padd-b-70">
         <b-card class="AllCards padd-0 bordradius-5 padd-15">
           <div class="chart-wrapper1 echarts-align">
             <IEcharts :option="pie"></IEcharts>
@@ -149,40 +149,8 @@ export default {
 </script>
 
 <style>
-.welcomeText {
-  padding: 8px 8px 8px 16px;
-  color: #282828;
-  font-weight: 600;
-  font-size: 16px;
-}
-.btn32 {
-  margin-left: 8px !important;
-  border: 1px solid #e6e6e6 !important;
-  font-size: 12px !important;
-  color: #282828 !important;
-  background: #e6e6e6 !important;
-}
-.btn32-mar-l16 {
-  margin-left: 16px;
-  border: 1px solid #e6e6e6;
-  font-size: 12px;
-  color: #282828;
-  background: #e6e6e6;
-  padding: 3px 12px;
-}
-/* .headBtns.active {
-   background-color: #000 !important; 
-  background-color: #1f3565 !important;
-  color: #fff !important;
-  border-radius: 2px !important;
-  border: 1px solid #1f3565 !important;
-} */
-.solid1,
-.solid2 {
-  border: 0;
-  border-top: 1px solid #a2a2a2;
-  margin: 7px 16px 0 !important;
-}
+
+
 
 /**
 Align echarts width height */
