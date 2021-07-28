@@ -42,6 +42,9 @@ html {
 .fsize12 {
   font-size: 12px;
 }
+.fsize11 {
+  font-size: 11px;
+}
 .marg-l-40 {
   margin-left: 40px;
 }
@@ -66,8 +69,8 @@ html {
 .f-right {
   float: right;
 }
-.justify-content-flex-end{
-  justify-content:flex-end;
+.justify-content-flex-end {
+  justify-content: flex-end;
 }
 // .padd-l-16 {
 //   padding-left: 16px;
@@ -367,7 +370,12 @@ th {
 .l-height-27 {
   line-height: 27px;
 }
-
+.l-height-24 {
+  line-height: 24px;
+}
+.height-18 {
+  height: 18px !important;
+}
 .imagealign {
   float: right;
   position: absolute;
