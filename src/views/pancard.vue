@@ -7,7 +7,7 @@
         </label>
       </div>
 
-      <div class="marg-r-8 padd-l-16 w-100">
+      <div class="marg-r-8 pl-8 w-100">
         <button
           class="bttnalign marg-l-16 headBtns clr-000000 mar-right8 showSingle"
           :class="this.pancardContent ? 'active' : ''"
@@ -127,7 +127,7 @@
           </span>
         </div>
 
-        <div class="w-426 h-268 bdrclr-2e3031 ml-4 mt-6">
+        <div class="w-426 h-268 borderclr-2E3031 ml-4 mt-6">
           <!-- <img v-bind:src="require('../assets/' + img)" /> -->
         </div>
       </div>
@@ -270,7 +270,7 @@
           </span>
         </div>
 
-        <div class="w-426 h-268 bdrclr-2e3031 ml-4 mt-6"></div>
+        <div class="w-426 h-268 borderclr-2E3031 ml-4 mt-6"></div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 padd-0">
         <div class="fsize12 clr-56585a">AddressLine1</div>
@@ -364,7 +364,7 @@
               bgclr-fff
               clr-2E3031
               border-radius
-              bdrclr-2e3031
+              borderclr-2E3031
               minwidth-96
               mr-4
             "
@@ -433,7 +433,7 @@
           </span>
         </div>
 
-        <div class="w-426 h-268 bdrclr-2e3031 ml-4 mt-6"></div>
+        <div class="w-426 h-268 borderclr-2E3031 ml-4 mt-6"></div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 padd-0 mt-6">
         <div class="fsize12 clr-56585a">AddressLine1</div>
@@ -538,7 +538,7 @@
           </span>
         </div>
 
-        <div class="w-426 h-268 bdrclr-2e3031 ml-4 mt-6"></div>
+        <div class="w-426 h-268 borderclr-2E3031 ml-4 mt-6"></div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 padd-0 mt-6">
         <div class="fsize12 clr-56585a">IFSC Code</div>
@@ -643,7 +643,7 @@
           </span>
         </div>
 
-        <div class="w-426 h-268 bdrclr-2e3031 ml-4 mt-6"></div>
+        <div class="w-426 h-268 borderclr-2E3031 ml-4 mt-6"></div>
       </div>
       <div
         class="
@@ -891,7 +891,7 @@
                 w-128
                 clr-2E3031
                 bgclr-fff
-                bdrclr-2e3031
+                borderclr-2E3031
                 border-radius
               "
               @click="closeModal()"
