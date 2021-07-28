@@ -946,10 +946,6 @@ export default {
             this.perpin = response.data.result.pin;
             this.percity = response.data.result.city;
             this.perstate = response.data.result.state;
-            // localStorage.setItem(
-            //   "permanentAddress",
-            //   JSON.stringify(response.data["result"])
-            // );
           } else {
             // console.log("user cannot add");
           }
@@ -958,13 +954,17 @@ export default {
     },
     bankdetails() {
       let bank = {
-         applicationId: this.apllicationId,
+        applicationId: this.apllicationId,
       };
       httpService.baNkDetails(bank).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
+            this.iffccode = response.data.result.ifsc_code;
+            this.bankname = response.data.result.bankName;
+            this.bankaddress = response.data.result.bankAddress;
+            this.micrcode = response.data.result.micrCode;
+
             console.log(response);
-            
           } else {
           }
         }
@@ -972,16 +972,24 @@ export default {
     },
     additionaldetail() {
       let additional = {
-        applicationId: JSON.parse(localStorage.getItem("applicateid")),
+        applicationId: this.apllicationId,
       };
       httpService.aDDitionalDetails(additional).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
             console.log(response);
-            localStorage.setItem(
-              "additional",
-              JSON.stringify(response.data["result"])
-            );
+            this.oCcupation = response.data.result.occupation;
+            this.workprofile = response.data.result.work_profile;
+            this.companyname = response.data.result.company_name;
+            this.occupationaddress = response.data.result.occupation_address;
+            this.workexperience = response.data.result.work_experience;
+            this.sourceincome = response.data.result.source_income;
+            this.placeorder = response.data.result.place_order;
+            this.incomerange = response.data.result.annual_income;
+            this.networth = response.data.result.net_worth;
+            this.eduqualification = response.data.result.edu_qualification;
+            this.tradingexperience = response.data.result.trading_experience;
+            this.otherbroker = response.data.result.other_broker;
           } else {
           }
         }
