@@ -7,7 +7,6 @@
       <v-flex xs12 sm12 md6 lg6 xl6 align-center justify-center>
         <v-layout row wrap align-center justify-center marg-0>
 
-          <form @keyup.enter="suBmit()" >
 
           <div class="custom-card padd-16-24 bor-radius boxshad back-color">
             <div class="Img-div">
@@ -20,7 +19,7 @@
             <label for="" class="custom-sub-head mb-2 w-100 marg-0"
               >Manage your eKYC System</label
             >
-            <form method="post" class="w-100" @submit.prevent="suBmit">
+            <form method="post" class="w-100" @keyup.enter="suBmit()">
               <div class="w-100 h-72">
                 <div class="l-height">
 
@@ -77,16 +76,6 @@
                         'is-invalid': submitted && $v.password.$error,
                       }"
                     />
-                    <!-- <div
-                      v-if="submitted && $v.password.$error"
-                      class="invalid-feedback marg-0 l-height-20"
-                    >
-                      <span
-                        v-if="!$v.password.required"
-                        class="validatemessage fsize12"
-                        >Please Enter your email</span
-                      >
-                    </div> -->
 
                     <span class="bor-radius" @click="toggleFieldTextType()">
                       <span class="">
@@ -117,16 +106,6 @@
               </div>
             </form>
 
-            <div class="">
-
-              <button
-              type="button"
-
-                class="bor-radius w-100 h-40 fsize14bold-btn"
-              >
-                Submit</router-link
-              > -->
-
               <button
                 class="bor-radius w-100 h-40 fsize14bold-btn loader"
                 @click="suBmit()"
@@ -137,15 +116,6 @@
              >
                 Submit
               </button>
-               <!-- <v-progress-circular
-            class="ml-2"
-            v-if="loader"
-            indeterminate
-            size="18"
-            :width="2"
-            color="blue"
-          ></v-progress-circular> -->
-            </div>
             <div class="w-100 mt-2">
               <label for="" class="fsize10-link l-height padd-l-8 cursor marg-0"
                 >Forgot Password?</label

@@ -402,7 +402,7 @@ th {
   vertical-align: top !important;
 }
 .borderclr-2E3031 {
-  border-color: #2e3031;
+  border: solid 1px #2e3031 !important;
 }
 .clr-2E3031 {
   color: #2e3031;
