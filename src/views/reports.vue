@@ -1,5 +1,5 @@
 <template>
-  <div class="lato-font">
+  <v-app class="lato-font ">
     <div class="headorder">
       <div class="padd-8-16 clr-282828">
         <label class="fsize16 marg-0 fw-600">Reports</label>
@@ -78,7 +78,7 @@
         </table>
       </b-card>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>

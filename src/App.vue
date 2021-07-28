@@ -42,6 +42,9 @@ html {
 .fsize12 {
   font-size: 12px;
 }
+.fsize11 {
+  font-size: 11px;
+}
 .marg-l-40 {
   margin-left: 40px;
 }
@@ -66,12 +69,10 @@ html {
 .f-right {
   float: right;
 }
-.justify-content-flex-end{
-  justify-content:flex-end;
+.justify-content-flex-end {
+  justify-content: flex-end;
 }
-// .padd-l-16 {
-//   padding-left: 16px;
-// }
+
 .clr-000000 {
   color: #000000;
 }
@@ -156,15 +157,8 @@ html {
 .border-bottom {
   border-bottom: 1px solid #e1e1e1;
 }
-.AllCards,
-.v-sheet.v-card,
-// v-card {
-//   border-radius: 5px !important;
-// }
-.AllCards,
-v-card {
-  min-height: auto !important;
-}
+
+
 .AllCards {
   box-shadow: rgba(0, 0, 0, 0.15) 0 5px 15px 0 !important;
   border-radius: 5px !important;
@@ -187,12 +181,6 @@ v-card {
 tr,
 th {
   height: 56px !important;
-}
-.AllCards,
-.v-sheet.v-card,
-.AllCards,
-.v-card {
-  min-height: auto !important;
 }
 .padd-12-7 {
   padding: 12px 10px !important;
@@ -367,7 +355,12 @@ th {
 .l-height-27 {
   line-height: 27px;
 }
-
+.l-height-24 {
+  line-height: 24px;
+}
+.height-18 {
+  height: 18px !important;
+}
 .imagealign {
   float: right;
   position: absolute;

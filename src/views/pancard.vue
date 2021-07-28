@@ -1,5 +1,5 @@
 <template>
-  <div class="lato-font clr-000000">
+  <div class="lato-font  clr-000000">
     <div class="headorder">
       <div class="padd-8-16 clr-282828">
         <label class="fsize16 marg-0 fw-600 clr-000000"
@@ -140,40 +140,58 @@
           <input
             class="w-16 h-16 marg-t-2"
             type="checkbox"
-            name="c2"
-            value="c2"
-            id="corporatebanking"
+            v-model="applicantNameCheckBox"
           />
-
           <label class="marg-0 pl-2 valign-top fsize14">
             {{ this.applicateName }}
           </label>
         </div>
+        <div class="height-18">
+          <div
+            class="fsize11 text-danger"
+            v-if="this.submittedPanProof && !this.applicantNameCheckBox"
+          >
+            Please check applicantName
+          </div>
+        </div>
+
         <div class="mt-4 fsize12 clr-56585a">PAN No</div>
         <div class="clr-000000 fsize12 mt-1">
           <input
             class="w-16 h-16 marg-t-2"
             type="checkbox"
-            name="c2"
-            value="c2"
-            id="corporatebanking"
+            v-model="panNoCheckBox"
           />
-
           <label class="marg-0 pl-2 valign-top fsize14">
             {{ this.panNo }}
           </label>
         </div>
+        <div class="height-18">
+          <div
+            class="fsize11 text-danger"
+            v-if="this.submittedPanProof && !this.panNoCheckBox"
+          >
+            Please check PanNo
+          </div>
+        </div>
+
         <div class="mt-4 fsize12 clr-56585a">DOB</div>
         <div class="clr-000000 fsize12 mt-1">
           <input
             class="w-16 h-16 marg-t-2"
             type="checkbox"
-            name="c2"
-            value="c2"
-            id="corporatebanking"
+            v-model="dobCheckBox"
           />
 
           <label class="marg-0 pl-2 valign-top fsize14"> {{ this.dOb }} </label>
+        </div>
+        <div class="height-18">
+          <div
+            class="fsize11 text-danger"
+            v-if="this.submittedPanProof && !this.dobCheckBox"
+          >
+            Please check DOB
+          </div>
         </div>
       </div>
       <div class="row m-0 mt-10 mb-4 justify-content-flex-end">
@@ -190,8 +208,7 @@
               minwidth-96
               mr-4
             "
-            data-toggle="modal"
-            data-target="#exampleModal"
+            @click="callModal()"
           >
             Reject
           </button>
@@ -207,6 +224,7 @@
               clr-fff
               minwidth-96
             "
+            @click="panApprove()"
           >
             Approve
           </button></span
@@ -839,7 +857,7 @@
                 clr-fff
                 ml-4
               "
-              @click='panReject()'
+              @click="panReject()"
             >
               Submit
             </button>
@@ -884,9 +902,20 @@ export default {
       tradingexperience: "",
       otherbroker: "",
       comments: "",
+      applicantNameCheckBox: false,
+      panNoCheckBox: false,
+      dobCheckBox: false,
+      submittedPanProof: false,
     };
   },
   methods: {
+
+    callModal() {
+      $("#exampleModal").modal("show");
+    },
+    closeModal() {
+      $("#exampleModal").modal("hide");
+    },
     // get Pan details
     getPanCard() {
       let panCard = {
@@ -898,7 +927,6 @@ export default {
             this.panNo = response.data.result.pan_card;
             this.dOb = response.data.result.dob;
             this.applicateName = response.data.result.applicant_name;
-            console.log(response);
           } else {
           }
         }
@@ -1014,10 +1042,32 @@ export default {
         isRejected: 1,
         comments: this.comments,
       };
-      httpService.panReject(json).then((response) => {
-        console.log(response);
-        // document.getElementById("exampleModal").style.display = "none";
+      httpService.panApproveOrReject(json).then((response) => {
+        if (response.status == 200 && response.data.message == "Success") {
+          console.log(response);
+          this.closeModal();
+        }
       });
+    },
+    panApprove() {
+      this.submittedPanProof = true;
+      if (
+        this.applicantNameCheckBox &&
+        this.panNoCheckBox &&
+        this.dobCheckBox
+      ) {
+        let json = {
+          applicationId: this.apllicationId,
+          isApprove: 1,
+          isRejected: 0,
+          comments: "",
+        };
+        httpService.panApproveOrReject(json).then((response) => {
+          if (response.status == 200 && response.data.message == "Success") {
+            console.log(response);
+          }
+        });
+      }
     },
   },
 
@@ -1029,15 +1079,15 @@ export default {
       this.apllicationId = JSON.parse(localStorage.getItem("app_Id"));
     }
     this.getPanCard();
-    jQuery(function () {
-      jQuery("#showSingle").click(function () {
-        jQuery(".targetDiv").show();
-      });
-      jQuery(".showSingle").click(function () {
-        jQuery(".targetDiv").hide();
-        jQuery("#div" + $(this).attr("target")).show();
-      });
-    });
+    // jQuery(function () {
+    //   jQuery("#showSingle").click(function () {
+    //     jQuery(".targetDiv").show();
+    //   });
+    //   jQuery(".showSingle").click(function () {
+    //     jQuery(".targetDiv").hide();
+    //     jQuery("#div" + $(this).attr("target")).show();
+    //   });
+    // });
     $(document).ready(function () {
       $(".headBtns").on("click", function () {
         $(".headBtns").removeClass("active");

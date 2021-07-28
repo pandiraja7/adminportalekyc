@@ -1,5 +1,5 @@
 <template>
-  <div class="lato-font clr-000000">
+  <div class="lato-font clr-000000 mr-4">
     <div class="headorder">
       <div class="padd-8-16 clr-282828">
         <label class="fsize16 marg-0 fw-600 clr-000000"

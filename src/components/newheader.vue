@@ -1,7 +1,8 @@
 <template>
-  <div class="row marg-0 opansans-font header" style="font-size: 12px display-flex:none">
+<div class="mr-4">
+  <div class="row marg-0 opansans-font header" style="font-size: 12px">
     <!-- <div class="wrapper"> -->
-    <div class="row marg-0 header-border" style="display-flex:none">
+    <div class="row marg-0">
       <div class="h-56 fsize12 col f-right">
         <!-- <p class="para-wrap"> -->
         <span><img src="@/assets/Image 1.png" alt="" /></span>
@@ -15,6 +16,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>

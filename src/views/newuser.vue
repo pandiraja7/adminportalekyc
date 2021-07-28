@@ -1,12 +1,11 @@
 <template>
-  <v-app class="lato-font" style="background: #f9f9f9">
-    <div>
+  <div class="lato-font " style="background: #f9f9f9">
       <div class="headorder">
         <div class="padd-8-16 clr-282828">
           <label class="fsize16 marg-0 fw-600">Access Control</label>
         </div>
 
-        <div class="arg-r-8 padd-l-16 w-100">
+        <div class="arg-r-8 pl-8 w-100">
           <button
             class="bttnalign headBtns active marg-r-8 showSingle"
             id="btn1"
@@ -659,8 +658,7 @@
           </div>
         </b-card>
       </div>
-    </div>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -852,7 +850,7 @@ export default {
   color: #0075e1 !important;
   font-size: 12px !important;
   cursor: pointer;
-  margin-right: 16px !important;
+  margin-right: 32px !important;
 }
 
 /* buttons */
@@ -1019,5 +1017,8 @@ v-card {
   /* body {
     background-color: lightblue;
   } */
+}
+.solid2{
+  margin: 7px 32px 0px 32px !important;
 }
 </style>
