@@ -201,7 +201,7 @@
               bgclr-fff
               clr-2E3031
               border-radius
-              bdrclr-2e3031
+              borderclr-2E3031
               minwidth-96
               mr-4
             "
