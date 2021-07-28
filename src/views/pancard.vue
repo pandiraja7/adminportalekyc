@@ -996,6 +996,7 @@ export default {
       });
     },
 
+
     getUploadFiles() {
       let attachFile = {
         applicationId: JSON.parse(localStorage.getItem("applicateid")),
@@ -1020,69 +1021,6 @@ export default {
     ) {
       this.apllicationId = JSON.parse(localStorage.getItem("app_Id"));
     }
-
-    // this.applicateName = JSON.parse(localStorage.getItem("applicateName"))[
-    //   "applicant_name"
-    // ];
-    // console.log(this.applicateName);
-    // this.dOb = JSON.parse(localStorage.getItem("applicateName"))["dateOfBirth"];
-    // this.panNo = JSON.parse(localStorage.getItem("applicateName"))["pan_card"];
-    // this.addressline1 = JSON.parse(localStorage.getItem("geTAddress"))[
-    //   "address_line_1"
-    // ];
-    // this.pincode = JSON.parse(localStorage.getItem("geTAddress"))["pin"];
-    // this.State = JSON.parse(localStorage.getItem("geTAddress"))["state"];
-    // this.city = JSON.parse(localStorage.getItem("geTAddress"))["city"];
-    // this.permanentAddress = JSON.parse(
-    //   localStorage.getItem("permanentAddress")
-    // )["address_line_1"];
-    // this.percity = JSON.parse(localStorage.getItem("permanentAddress"))["city"];
-    // this.perpin = JSON.parse(localStorage.getItem("permanentAddress"))["pin"];
-    // this.perstate = JSON.parse(localStorage.getItem("permanentAddress"))[
-    //   "state"
-    // ];
-    // this.iffccode = JSON.parse(localStorage.getItem("bankDetails"))[
-    //   "ifsc_code"
-    // ];
-    // this.bankname = JSON.parse(localStorage.getItem("bankDetails"))["bankName"];
-    // this.bankaddress = JSON.parse(localStorage.getItem("bankDetails"))[
-    //   "bankAddress"
-    // ];
-    // this.micrcode = JSON.parse(localStorage.getItem("bankDetails"))["micrCode"];
-    // this.oCcupation = JSON.parse(localStorage.getItem("additional"))[
-    //   "occupation"
-    // ];
-    // this.workprofile = JSON.parse(localStorage.getItem("additional"))[
-    //   "work_profile"
-    // ];
-    // this.companyname = JSON.parse(localStorage.getItem("additional"))[
-    //   "company_name"
-    // ];
-    // this.occupationaddress = JSON.parse(localStorage.getItem("additional"))[
-    //   "occupation_address"
-    // ];
-    // this.workexperience = JSON.parse(localStorage.getItem("additional"))[
-    //   "work_experience"
-    // ];
-    // this.sourceincome = JSON.parse(localStorage.getItem("additional"))[
-    //   "source_income"
-    // ];
-    // this.placeorder = JSON.parse(localStorage.getItem("additional"))[
-    //   "place_order"
-    // ];
-    // this.incomerange = JSON.parse(localStorage.getItem("additional"))[
-    //   "annual_income"
-    // ];
-    // this.networth = JSON.parse(localStorage.getItem("additional"))["net_worth"];
-    // this.eduqualification = JSON.parse(localStorage.getItem("additional"))[
-    //   "edu_qualification"
-    // ];
-    // this.tradingexperience = JSON.parse(localStorage.getItem("additional"))[
-    //   "trading_experience"
-    // ];
-    //     this.otherbroker = JSON.parse(localStorage.getItem("additional"))[
-    //   "other_broker"
-    // ];
 
     this.getPanCard();
 
