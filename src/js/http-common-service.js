@@ -114,7 +114,19 @@ export default {
         });
     },
     permanentApproveOrReject(jsonObj) {
-    
+        return AXIOS.post('/admin/respondPermanentAddress', jsonObj, {
+            headers: this.headers,
+        });
+    },
+    bankDetailsApproveOrReject(jsonObj) {
+        return AXIOS.post('/admin/respondBankAccountDetails', jsonObj, {
+            headers: this.headers,
+        });
+    },
+    additionalDetailApproveOrReject(jsonObj) {
+        return AXIOS.post('/admin/respondAdditionalDetails', jsonObj, {
+            headers: this.headers,
+        });
     }
 
 };
