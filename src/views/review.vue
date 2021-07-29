@@ -155,7 +155,7 @@
                     h-48
                     bgclr-fff
                     clr-000000
-                    border-radius border-input
+                    border-radius
                     borderclr-2E3031
                   "
                   text
@@ -171,7 +171,7 @@
                     h-48
                     clr-fff
                     bgclr-007AFF
-                    border-radius border-input
+                    border-radius
                     marg-0
                   "
                   back
