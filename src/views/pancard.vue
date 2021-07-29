@@ -85,9 +85,9 @@
       </div>
       <hr class="solid2" />
     </div>
-    <div class="row m-0" v-if="this.pancardContent">
-      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0 padd-0">
-        <div class="h-64 ml-4 mt-6">
+    <div class="row m-0 pancardHeight" v-if="this.pancardContent">
+      <div class="col-7 pl-8 pt-0 pr-0 pb-0">
+        <div class="h-64 mt-6">
           <span class="">
             <div class="">
               <select
@@ -103,7 +103,6 @@
                   outline-none
                   clr-e1e1e1
                 "
-                @click="getUploadFiles()"
               >
                 <option class="fsize12" value="null" role.selected hidden>
                   PAN CARD
@@ -127,11 +126,10 @@
           </span>
         </div>
 
-        <div class="w-426 h-268 borderclr-2E3031 ml-4 mt-6">
-          <!-- <img v-bind:src="require('../assets/' + img)" /> -->
+        <div class="w-426 h-100 borderclr-2E3031 mt-6">
         </div>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 padd-0 mt-6">
+      <div class="col-5 p-0 mt-6">
         <div class="fsize12 clr-56585a">Name</div>
         <div class="clr-000000 fsize12 mt-1">
           <input
@@ -191,7 +189,7 @@
           </div>
         </div>
       </div>
-      <div class="row m-0 mt-10 mb-4 justify-content-flex-end">
+      <div class="row m-0 pb-8 justify-content-flex-end align-end">
         <span class="fsize14"
           ><button
             type="button"
@@ -1270,5 +1268,8 @@ export default {
 
 .minwidth-96 {
   min-width: 96px !important;
+}
+.pancardHeight{
+  min-height: calc(100vh - 131px) !important;
 }
 </style>
