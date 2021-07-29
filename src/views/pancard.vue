@@ -17,6 +17,13 @@
           PAN CARD
         </button>
         <button
+          class="bttnalign marg-l-16 headBtns clr-000000 mar-right8 showSingle"
+          :class="this.basicInfoContent ? 'active' : ''"
+          @click="basicInfo()"
+        >
+          Basic Info
+        </button>
+        <button
           class="bttnalign headBtns clr-000000 mar-right8 showSingle"
           :class="this.addressContent ? 'active' : ''"
           @click="getaddress()"
@@ -222,6 +229,184 @@
               minwidth-96
             "
             @click="panApprove()"
+          >
+            Approve
+          </button></span
+        >
+      </div>
+    </div>
+
+    <div class="row m-0" v-if="this.basicInfoContent">
+      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0 padd-0">
+        <div class="h-64 ml-4 mt-6">
+          <span class="">
+            <div class="">
+              <select
+                class="
+                  custom-select
+                  border-radius
+                  borderclr-cbcb
+                  w-280
+                  h-40
+                  fsize14
+                  pl-2
+                  lato-font
+                  outline-none
+                  clr-e1e1e1
+                "
+              >
+                <option class="fsize12" value="null" role.selected hidden>
+                  PAN CARD
+                </option>
+                <option class="fsize12" value="Address Proof Document">
+                  Address Proof Document
+                </option>
+                <option class="fsize12" value=">Aadhaar Card">
+                  Aadhaar Card
+                </option>
+                <option class="fsize12" value="Bank Proof">Bank Proof</option>
+                <option value="40" class="Income Proof">Income Proof</option>
+                <option value="40" class="Signature">Signature</option>
+                <option value="40" class="Photo Proof">Photo Proof</option>
+                <option value="40" class="Photo Proof">
+                  Signed ekyc Document
+                </option>
+                <option value="40" class="Photo Proof">IVR</option>
+              </select>
+            </div>
+          </span>
+        </div>
+
+        <div class="w-426 h-268 borderclr-2E3031 ml-4 mt-6"></div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 padd-0 mt-6">
+        <div class="fsize12 clr-56585a">AddressLine1</div>
+        <div class="clr-000000 fsize12 mt-1">
+          <input
+            class="w-16 h-16 marg-t-2"
+            type="checkbox"
+            name="c2"
+            value="c2"
+            v-model="perAddressline"
+            id="corporatebanking"
+          />
+
+          <label class="marg-0 pl-2 valign-top fsize14">
+            <!-- {{ this.permanentAddress }} -->
+          </label>
+        </div>
+
+        <div class="height-18">
+          <div
+            class="fsize11 text-danger"
+            v-if="this.submittedaddressProof && !this.perAddressline"
+          >
+            Please select AddressLine
+          </div>
+        </div>
+
+        <div class="mt-4 fsize12 clr-56585a">Pin Code</div>
+        <div class="clr-000000 fsize12 mt-1">
+          <input
+            class="w-16 h-16 marg-t-2"
+            type="checkbox"
+            name="c2"
+            value="c2"
+            v-model="perPincode"
+            id="corporatebanking"
+          />
+
+          <label class="marg-0 pl-2 valign-top fsize14">
+            <!-- {{ this.perpin }} -->
+          </label>
+        </div>
+
+        <div class="height-18">
+          <div
+            class="fsize11 text-danger"
+            v-if="this.submittedaddressProof && !this.perPincode"
+          >
+            Please select Pincode
+          </div>
+        </div>
+
+        <div class="mt-4 fsize12 clr-56585a">City</div>
+        <div class="clr-000000 fsize12 mt-1">
+          <input
+            class="w-16 h-16 marg-t-2"
+            type="checkbox"
+            name="c2"
+            value="c2"
+            v-model="perCity"
+            id="corporatebanking"
+          />
+
+          <label class="marg-0 pl-2 valign-top fsize14">
+            <!-- {{ this.percity }} -->
+          </label>
+        </div>
+        <div class="height-18">
+          <div
+            class="fsize11 text-danger"
+            v-if="this.submittedaddressProof && !this.perCity"
+          >
+            Please select City
+          </div>
+        </div>
+
+        <div class="mt-4 fsize12 clr-56585a">State</div>
+        <div class="clr-000000 fsize12 mt-1">
+          <input
+            class="w-16 h-16 marg-t-2"
+            type="checkbox"
+            name="c2"
+            value="c2"
+            v-model="pErState"
+            id="corporatebanking"
+          />
+
+          <label class="marg-0 pl-2 valign-top fsize14">
+            <!-- {{ this.perstate }} -->
+          </label>
+        </div>
+        <div class="height-18">
+          <div
+            class="fsize11 text-danger"
+            v-if="this.submittedaddressProof && !this.pErState"
+          >
+            Please select State
+          </div>
+        </div>
+      </div>
+      <div class="row m-0 mt-10 mb-4 justify-content-flex-end">
+        <span class="fsize14"
+          ><button
+            type="button"
+            class="
+              padd-0-16
+              h-40
+              bgclr-fff
+              clr-2E3031
+              border-radius
+              borderclr-2E3031
+              minwidth-96
+              mr-4
+            "
+          >
+            Reject
+          </button>
+        </span>
+        <span class="fsize14 pr-16"
+          ><button
+            class="
+              padd-0-16
+              h-40
+              bgrclr-007AFF
+              border-radius
+              bdrclr-007aff
+              clr-fff
+              minwidth-96
+            "
           >
             Approve
           </button></span
@@ -1017,7 +1202,7 @@
               {{ this.eduqualification }}
             </label>
           </div>
-             <div
+          <div
             class="fsize11 text-danger"
             v-if="this.submittedaddressProof && !this.eDucationalQualication"
           >
@@ -1040,7 +1225,7 @@
               {{ this.tradingexperience }}
             </label>
           </div>
-              <div
+          <div
             class="fsize11 text-danger"
             v-if="this.submittedaddressProof && !this.tRadingExperience"
           >
@@ -1064,7 +1249,7 @@
               {{ this.otherbroker }}
             </label>
           </div>
-                  <div
+          <div
             class="fsize11 text-danger"
             v-if="this.submittedaddressProof && !this.anyOtherBroker"
           >
@@ -1234,6 +1419,7 @@ export default {
       submittedAdditionalProof: false,
       pancardContent: true,
       addressContent: false,
+      basicInfoContent: false,
       perAddressContent: false,
       bankDetailsContent: false,
       additionalDetailsContent: false,
@@ -1258,8 +1444,9 @@ export default {
       placeTheOrder: false,
       iNcomeRange: false,
       nEtWorth: false,
-      eDucationalQualication:false,
-      tRadingExperience:false,
+      eDucationalQualication: false,
+      tRadingExperience: false,
+      anyOtherBroker: false,
     };
   },
   methods: {
@@ -1392,6 +1579,29 @@ export default {
         }
       });
     },
+    // basicInfo() {
+    //   this.pancardContent = false;
+    //   this.addressContent = false;
+    //   this.perAddressContent = false;
+    //   this.bankDetailsContent = false;
+    //   this.additionalDetailsContent = false;
+    //   
+    //   this.basicInfoContent = true;
+    //   let bank = {
+    //     applicationId: this.apllicationId,
+    //   };
+    //   httpService.gETAddress(bank).then((response) => {
+    //     if (response.status == 200) {
+    //       if (response.data["status"] == 1) {
+    //         this.iffccode = response.data.result.ifsc_code;
+    //         this.bankname = response.data.result.bankName;
+    //         this.bankaddress = response.data.result.bankAddress;
+    //         this.micrcode = response.data.result.micrCode;
+    //       } else {
+    //       }
+    //     }
+    //   });
+    // },
 
     panReject() {
       let json = {
@@ -1546,8 +1756,9 @@ export default {
         this.sourceOfIncome &&
         this.placeTheOrder &&
         this.iNcomeRange &&
-        this.nEtWorth && 
-        this.eDucationalQualication &&  this.tRadingExperience
+        this.nEtWorth &&
+        this.eDucationalQualication &&
+        this.tRadingExperience
       ) {
         let json = {
           applicationId: this.apllicationId,
