@@ -10,16 +10,20 @@
 export default {};
 </script>
 
-<style lang="scss">
+<style>
 html {
   overflow-y: overlay !important;
+   /* font-family: "Lato,Regular" !important; */
+}
+*{
+  font-family: "Lato" !important; 
 }
 @font-face {
-  font-family: "Lato,Regular";
+  font-family: "Lato";
   src: local("fonts"), url(./assets/fonts/Lato-Regular.ttf) format("truetype");
 }
 .lato-font {
-  font-family: "Lato,Regular" !important;
+  font-family: "Lato" !important;
 }
 .marg-0 {
   margin: 0px !important;
@@ -155,7 +159,7 @@ html {
   width: 20px;
 }
 /* end */
-//  b-card css
+/* //  b-card css */
 .border-bottom {
   border-bottom: 1px solid #e1e1e1;
 }
@@ -165,10 +169,7 @@ html {
   box-shadow: rgba(0, 0, 0, 0.15) 0 5px 15px 0 !important;
   border-radius: 5px !important;
 }
-// .card-body {
-//   padding: 0px !important;
-// }
-//  end
+ /* end */
 .fw-bold {
   font-weight: bold !important;
 }
@@ -373,8 +374,11 @@ th {
 .marg-r-8 {
   margin-right: 8px;
 }
-//Author:Vijayabaskar
-//@at-root Align common class for css//
+.overflow-y-auto{
+   overflow-y: auto !important;
+}
+/* //Author:Vijayabaskar
+//@at-root Align common class for css// */
 
 .bttnalign {
   border: 1px solid #e6e6e6;
@@ -414,7 +418,7 @@ th {
   height: 80px !important;
 }
 
-// reduced by css by bharath 
+/* // reduced by css by bharath  */
 .search {
   color: #0075e1 !important;
   font-size: 12px !important;

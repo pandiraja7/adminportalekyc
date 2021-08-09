@@ -1,20 +1,28 @@
 <template>
   <div class="lato-font clr-000000">
     <div class="headorder">
-      <div class="padd-8-32 clr-282828">
+      <div class="clr-282828 pl-4 py-2">
         <label class="fsize16 marg-0 fw-600 clr-000000"
           >Document Review -
         </label>
       </div>
 
-      <div class="marg-r-8 pl-8 w-100">
+      <div class="marg-r-8 pl-4 w-100">
         <button
           class="bttnalign marg-l-16 headBtns clr-000000 mar-right8 showSingle"
           :class="this.pancardContent ? 'active' : ''"
           target="1"
           @click="getPanCard()"
         >
-          PAN CARD
+          Pan Card
+        </button>
+        <button
+          class="bttnalign headBtns clr-000000 mar-right8 showSingle"
+          :class="this.additionalDetailsContent ? 'active' : ''"
+          target="5"
+          @click="additionaldetail()"
+        >
+          Info
         </button>
         <button
           class="bttnalign headBtns clr-000000 mar-right8 showSingle"
@@ -42,11 +50,19 @@
         </button>
         <button
           class="bttnalign headBtns clr-000000 mar-right8 showSingle"
-          :class="this.additionalDetailsContent ? 'active' : ''"
-          target="5"
-          @click="additionaldetail()"
+          :class="this.documentContent ? 'active' : ''"
+          target="4"
+          @click="documentsDetails()"
         >
-          Additional Details
+          Documents
+        </button>
+        <button
+          class="bttnalign headBtns clr-000000 mar-right8 showSingle"
+          :class="this.backOfficeContent ? 'active' : ''"
+          target="4"
+          @click="backOfficeDetails()"
+        >
+          Back Office
         </button>
         <span class="img" style="float: right">
           <span class="search-box">
@@ -83,10 +99,10 @@
           /></span>
         </span>
       </div>
-      <hr class="solid2" />
+      <hr class="solid2 ml-4" />
     </div>
     <div class="row m-0 pancardHeight" v-if="this.pancardContent">
-      <div class="col-7 pl-8 pt-0 pr-0 pb-0">
+      <div class="col-7 pl-4 pt-0 pr-0 pb-0">
         <div class="h-64 mt-6">
           <span class="">
             <div class="">
@@ -126,8 +142,7 @@
           </span>
         </div>
 
-        <div class="w-426 h-100 borderclr-2E3031 mt-6">
-        </div>
+        <div class="w-75 h-500 borderclr-2E3031 mt-6 overflow-y-auto"></div>
       </div>
       <div class="col-5 p-0 mt-6">
         <div class="fsize12 clr-56585a">Name</div>
@@ -227,9 +242,382 @@
       </div>
     </div>
 
-    <div class="row m-0 mt-6" v-if="this.addressContent">
-      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0 padd-0">
-        <div class="h-64 ml-4">
+    <div
+      class="row m-0 pancardHeight"
+      id="div5"
+      v-if="this.additionalDetailsContent"
+    >
+      <div class="col-7 pt-0 pb-0 pr-0 pl-4">
+        <div class="h-64 mt-6">
+            <div class="">
+              <select
+                class="
+                  custom-select
+                  border-radius
+                  borderclr-cbcb
+                  w-280
+                  h-40
+                  fsize14
+                  pl-2
+                  lato-font
+                  outline-none
+                  clr-e1e1e1
+                "
+              >
+                <option class="fsize12" value="null" role.selected hidden>
+                  PAN CARD
+                </option>
+                <option class="fsize12" value="Address Proof Document">
+                  Address Proof Document
+                </option>
+                <option class="fsize12" value=">Aadhaar Card">
+                  Aadhaar Card
+                </option>
+                <option class="fsize12" value="Bank Proof">Bank Proof</option>
+                <option value="40" class="Income Proof">Income Proof</option>
+                <option value="40" class="Signature">Signature</option>
+                <option value="40" class="Photo Proof">Photo Proof</option>
+                <option value="40" class="Photo Proof">
+                  Signed ekyc Document
+                </option>
+                <option value="40" class="Photo Proof">IVR</option>
+              </select>
+            </div>
+        </div>
+
+        <div class="w-75 h-500 borderclr-2E3031 mt-6"></div>
+      </div>
+      <div class="row m-0 col-5 p-0 mt-6">
+        <div class="col-6 p-0">
+          <div class="fsize12 clr-56585a">Occupation Type</div>
+          <div class="clr-000000 fsize12 mt-1">
+            <input
+              class="w-16 h-16 marg-t-2"
+              type="checkbox"
+              name="c2"
+              v-model="occupationType"
+              value="c2"
+              id="corporatebanking"
+            />
+
+            <label class="marg-0 pl-2 valign-top fsize14">
+              {{ this.oCcupation }}
+            </label>
+          </div>
+          <div class="height-18">
+            <div
+              class="fsize11 text-danger"
+              v-if="this.submittedAdditionalProof && !this.occupationType"
+            >
+              Please select Occupation Type
+            </div>
+          </div>
+
+          <div class="mt-4 fsize12 clr-56585a">Work Profile</div>
+          <div class="clr-000000 fsize12 mt-1">
+            <input
+              class="w-16 h-16 marg-t-2"
+              type="checkbox"
+              name="c2"
+              value="c2"
+              v-model="workPRofile"
+              id="corporatebanking"
+            />
+
+            <label class="marg-0 pl-2 valign-top fsize14">
+              {{ this.workprofile }}
+            </label>
+          </div>
+          <div class="height-18">
+            <div
+              class="fsize11 text-danger"
+              v-if="this.submittedAdditionalProof && !this.workPRofile"
+            >
+              Please select Work Profile
+            </div>
+          </div>
+
+          <div class="mt-4 fsize12 clr-56585a">Name Of Company/Business</div>
+          <div class="clr-000000 fsize12 mt-1">
+            <input
+              class="w-16 h-16 marg-t-2"
+              type="checkbox"
+              name="c2"
+              value="c2"
+              v-model="companyName"
+              id="corporatebanking"
+            />
+
+            <label class="marg-0 pl-2 valign-top fsize14">
+              {{ this.companyname }}
+            </label>
+          </div>
+          <div class="height-18">
+            <div
+              class="fsize11 text-danger"
+              v-if="this.submittedAdditionalProof && !this.companyName"
+            >
+              Please select Name Of Company/Business
+            </div>
+          </div>
+
+          <div class="mt-4 fsize12 clr-56585a">Address Of Occupation</div>
+          <div class="clr-000000 fsize12 mt-1">
+            <input
+              class="w-16 h-16 marg-t-2"
+              type="checkbox"
+              name="c2"
+              value="c2"
+              v-model="occupationADDress"
+              id="corporatebanking"
+            />
+
+            <label class="marg-0 pl-2 valign-top fsize14">
+              {{ this.occupationaddress }}
+            </label>
+          </div>
+          <div class="height-18">
+            <div
+              class="fsize11 text-danger"
+              v-if="this.submittedAdditionalProof && !this.occupationADDress"
+            >
+              Please select Address Of Occupation
+            </div>
+          </div>
+
+          <div class="mt-4 fsize12 clr-56585a">No Of Years Of Experience</div>
+          <div class="clr-000000 fsize12 mt-1">
+            <input
+              class="w-16 h-16 marg-t-2"
+              type="checkbox"
+              name="c2"
+              v-model="noOfYearsExperience"
+              value="c2"
+              id=""
+            />
+
+            <label class="marg-0 pl-2 valign-top fsize14">
+              {{ this.workexperience }}
+            </label>
+          </div>
+          <div class="height-18">
+            <div
+              class="fsize11 text-danger"
+              v-if="this.submittedAdditionalProof && !this.noOfYearsExperience"
+            >
+              Please select No Of Years Of Experience
+            </div>
+          </div>
+
+          <div class="mt-4 fsize12 clr-56585a">Source Of Income</div>
+          <div class="clr-000000 fsize12 mt-1">
+            <input
+              class="w-16 h-16 marg-t-2"
+              type="checkbox"
+              name="c2"
+              value="c2"
+              v-model="sourceOfIncome"
+              id=""
+            />
+
+            <label class="marg-0 pl-2 valign-top fsize14">
+              {{ this.sourceincome }}
+            </label>
+          </div>
+          <div class="height-18">
+            <div
+              class="fsize11 text-danger"
+              v-if="this.submittedAdditionalProof && !this.sourceOfIncome"
+            >
+              Please select Source Of Income
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 p-0">
+          <div class="fsize12 clr-56585a">Who Will Place The Order</div>
+          <div class="clr-000000 fsize12 mt-1">
+            <input
+              class="w-16 h-16 marg-t-2"
+              type="checkbox"
+              name="c2"
+              v-model="placeTheOrder"
+              value="c2"
+              id="corporatebanking"
+            />
+
+            <label class="marg-0 pl-2 valign-top fsize14">
+              {{ this.placeorder }}
+            </label>
+          </div>
+          <div class="height-18">
+            <div
+              class="fsize11 text-danger"
+              v-if="this.submittedAdditionalProof && !this.placeTheOrder"
+            >
+              Please select Who Will Place The Order
+            </div>
+          </div>
+
+          <div class="mt-4 fsize12 clr-56585a">Income Range</div>
+          <div class="clr-000000 fsize12 mt-1">
+            <input
+              class="w-16 h-16 marg-t-2"
+              type="checkbox"
+              name="c2"
+              value="c2"
+              v-model="iNcomeRange"
+              id="corporatebanking"
+            />
+
+            <label class="marg-0 pl-2 valign-top fsize14">
+              {{ this.incomerange }}
+            </label>
+          </div>
+          <div class="height-18">
+            <div
+              class="fsize11 text-danger"
+              v-if="this.submittedAdditionalProof && !this.iNcomeRange"
+            >
+              Please select Income Range
+            </div>
+          </div>
+
+          <div class="mt-4 fsize12 clr-56585a">Net Worth</div>
+          <div class="clr-000000 fsize12 mt-1">
+            <input
+              class="w-16 h-16 marg-t-2"
+              type="checkbox"
+              name="c2"
+              value="c2"
+              v-model="nEtWorth"
+              id="corporatebanking"
+            />
+
+            <label class="marg-0 pl-2 valign-top fsize14">
+              {{ this.networth }}
+            </label>
+          </div>
+          <div class="height-18">
+            <div
+              class="fsize11 text-danger"
+              v-if="this.submittedAdditionalProof && !this.nEtWorth"
+            >
+              Please select Income Range
+            </div>
+          </div>
+
+          <div class="mt-4 fsize12 clr-56585a">Educational Qualification</div>
+          <div class="clr-000000 fsize12 mt-1">
+            <input
+              class="w-16 h-16 marg-t-2"
+              type="checkbox"
+              name="c2"
+              value="c2"
+              v-model="eDucationalQualication"
+              id="corporatebanking"
+            />
+
+            <label class="marg-0 pl-2 valign-top fsize14">
+              {{ this.eduqualification }}
+            </label>
+          </div>
+          <div class="height-18">
+            <div
+              class="fsize11 text-danger"
+              v-if="
+                this.submittedAdditionalProof && !this.eDucationalQualication
+              "
+            >
+              Please select Income Range
+            </div>
+          </div>
+
+          <div class="mt-4 fsize12 clr-56585a">
+            Trading/ Investment Experience
+          </div>
+          <div class="clr-000000 fsize12 mt-1">
+            <input
+              class="w-16 h-16 marg-t-2"
+              type="checkbox"
+              name="c2"
+              v-model="tRadingExperience"
+              value="c2"
+              id=""
+            />
+
+            <label class="marg-0 pl-2 valign-top fsize14">
+              {{ this.tradingexperience }}
+            </label>
+          </div>
+          <div class="height-18">
+            <div
+              class="fsize11 text-danger"
+              v-if="this.submittedAdditionalProof && !this.tRadingExperience"
+            >
+              Please select Trading/ Investment Experience
+            </div>
+          </div>
+          <div class="mt-4 fsize12 clr-56585a">
+            Dealing With Any Other Broker
+          </div>
+          <div class="clr-000000 fsize12 mt-1">
+            <input
+              class="w-16 h-16 marg-t-2"
+              type="checkbox"
+              name="c2"
+              v-model="anyOtherBroker"
+              value="c2"
+              id=""
+            />
+
+            <label class="marg-0 pl-2 valign-top fsize14">
+              {{ this.otherbroker }}
+            </label>
+          </div> 
+        </div>
+      </div>
+      <div class="row m-0 mt-10 mb-8 justify-content-flex-end align-end">
+        <span class="fsize14"
+          ><button
+            type="button"
+            class="
+              padd-0-16
+              h-40
+              bgclr-fff
+              clr-2E3031
+              border-radius
+              borderclr-2E3031
+              minwidth-96
+              mr-4
+            "
+            @click="callModal()"
+          >
+            Reject
+          </button>
+        </span>
+        <span class="fsize14 pr-16"
+          ><button
+            class="
+              padd-0-16
+              h-40
+              bgrclr-007AFF
+              border-radius
+              bdrclr-007aff
+              clr-fff
+              minwidth-96
+            "
+            @click="aDDitionalDetailsApprove()"
+          >
+            Approve
+          </button></span
+        >
+      </div>
+    </div>
+
+    <div class="row m-0 pancardHeight" v-if="this.addressContent">
+      <div class="col-7 mt-6 pt-0 pb-0 pr-0 pl-4">
+        <div class="h-64">
           <span class="">
             <div class="">
               <select
@@ -267,10 +655,9 @@
             </div>
           </span>
         </div>
-
-        <div class="w-426 h-268 borderclr-2E3031 ml-4 mt-6"></div>
+        <div class="w-75 h-500 borderclr-2E3031 mt-6"></div>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 padd-0">
+      <div class="col-5 p-0 mt-6">
         <div class="fsize12 clr-56585a">AddressLine1</div>
         <div class="clr-000000 fsize12 mt-1">
           <input
@@ -352,7 +739,7 @@
           </div>
         </div>
       </div>
-      <div class="row m-0 mt-10 mb-4 justify-content-flex-end">
+      <div class="row m-0 mt-10 mb-8 justify-content-flex-end align-end">
         <span class="fsize14"
           ><button
             type="button"
@@ -390,9 +777,9 @@
       </div>
     </div>
 
-    <div class="row m-0" v-if="this.perAddressContent">
-      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0 padd-0">
-        <div class="h-64 ml-4 mt-6">
+    <div class="row m-0 pancardHeight" v-if="this.perAddressContent">
+      <div class="col-7 pt-0 pb-0 pr-0 pl-4 mt-6">
+        <div class="h-64">
           <span class="">
             <div class="">
               <select
@@ -431,9 +818,9 @@
           </span>
         </div>
 
-        <div class="w-426 h-268 borderclr-2E3031 ml-4 mt-6"></div>
+        <div class="w-75 h-500 borderclr-2E3031 mt-6"></div>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 padd-0 mt-6">
+      <div class="col-5 p-0 mt-6">
         <div class="fsize12 clr-56585a">AddressLine1</div>
         <div class="clr-000000 fsize12 mt-1">
           <input
@@ -453,7 +840,7 @@
         <div class="height-18">
           <div
             class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.perAddressline"
+            v-if="this.submittedperAddressProof && !this.perAddressline"
           >
             Please select AddressLine
           </div>
@@ -478,7 +865,7 @@
         <div class="height-18">
           <div
             class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.perPincode"
+            v-if="this.submittedperAddressProof && !this.perPincode"
           >
             Please select Pincode
           </div>
@@ -502,7 +889,7 @@
         <div class="height-18">
           <div
             class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.perCity"
+            v-if="this.submittedperAddressProof && !this.perCity"
           >
             Please select City
           </div>
@@ -526,13 +913,13 @@
         <div class="height-18">
           <div
             class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.pErState"
+            v-if="this.submittedperAddressProof && !this.pErState"
           >
             Please select State
           </div>
         </div>
       </div>
-      <div class="row m-0 mt-10 mb-4 justify-content-flex-end">
+      <div class="row m-0 mt-10 mb-8 justify-content-flex-end align-end">
         <span class="fsize14"
           ><button
             type="button"
@@ -570,9 +957,9 @@
       </div>
     </div>
 
-    <div class="row m-0" v-if="this.bankDetailsContent">
-      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0 padd-0">
-        <div class="h-64 ml-4 mt-6">
+    <div class="row m-0 pancardHeight" v-if="this.bankDetailsContent">
+      <div class="col-7 pt-0 pb-0 pr-0 pl-4 mt-6">
+        <div class="h-64">
           <span class="">
             <div class="">
               <select
@@ -611,9 +998,9 @@
           </span>
         </div>
 
-        <div class="w-426 h-268 borderclr-2E3031 ml-4 mt-6"></div>
+        <div class="w-75 h-500 borderclr-2E3031 mt-6"></div>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 padd-0 mt-6">
+      <div class="col-5 p-0 mt-6">
         <div class="fsize12 clr-56585a">IFSC Code</div>
         <div class="clr-000000 fsize12 mt-1">
           <input
@@ -632,7 +1019,7 @@
         <div class="height-18">
           <div
             class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.ifFcCode"
+            v-if="this.submittedBankProof && !this.ifFcCode"
           >
             Please select IFSC Code
           </div>
@@ -656,31 +1043,31 @@
         <div class="height-18">
           <div
             class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.bAnkName"
+            v-if="this.submittedBankProof && !this.bAnkName"
           >
             Please select Bank Name
           </div>
         </div>
 
-        <div class="mt-4 fsize12 clr-56585a">Bank Address</div>
+        <div class="mt-4 fsize12 clr-56585a">Account Holder's Name</div>
         <div class="clr-000000 fsize12 mt-1">
           <input
             class="w-16 h-16 marg-t-2"
             type="checkbox"
             name="c2"
             value="c2"
-            v-model="bAnkAddress"
+            v-model="holderName"
             id="corporatebanking"
           />
 
           <label class="marg-0 pl-2 valign-top fsize14">
-            {{ this.bankaddress }}
+            {{ this.bankDetailsArray.account_holder_name == null ? "NA" : this.bankDetailsArray.account_holder_name }}
           </label>
         </div>
         <div class="height-18">
           <div
             class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.bAnkAddress"
+            v-if="this.submittedBankProof && !this.holderName"
           >
             Please select Bank Address
           </div>
@@ -704,13 +1091,13 @@
         <div class="height-18">
           <div
             class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.miCrCode"
+            v-if="this.submittedBankProof && !this.miCrCode"
           >
             Please select MICR Code
           </div>
         </div>
       </div>
-      <div class="row m-0 mt-10 mb-4 justify-content-flex-end">
+      <div class="row m-0 mt-10 mb-8 justify-content-flex-end align-end">
         <span class="fsize14"
           ><button
             type="button"
@@ -741,366 +1128,6 @@
               minwidth-96
             "
             @click="bankDetailsApprove()"
-          >
-            Approve
-          </button></span
-        >
-      </div>
-    </div>
-
-    <div class="row m-0" id="div5" v-if="this.additionalDetailsContent">
-      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0 padd-0">
-        <div class="h-64 ml-4 mt-6">
-          <span class="">
-            <div class="">
-              <select
-                class="
-                  custom-select
-                  border-radius
-                  borderclr-cbcb
-                  w-280
-                  h-40
-                  fsize14
-                  pl-2
-                  lato-font
-                  outline-none
-                  clr-e1e1e1
-                "
-              >
-                <option class="fsize12" value="null" role.selected hidden>
-                  PAN CARD
-                </option>
-                <option class="fsize12" value="Address Proof Document">
-                  Address Proof Document
-                </option>
-                <option class="fsize12" value=">Aadhaar Card">
-                  Aadhaar Card
-                </option>
-                <option class="fsize12" value="Bank Proof">Bank Proof</option>
-                <option value="40" class="Income Proof">Income Proof</option>
-                <option value="40" class="Signature">Signature</option>
-                <option value="40" class="Photo Proof">Photo Proof</option>
-                <option value="40" class="Photo Proof">
-                  Signed ekyc Document
-                </option>
-                <option value="40" class="Photo Proof">IVR</option>
-              </select>
-            </div>
-          </span>
-        </div>
-
-        <div class="w-426 h-268 borderclr-2E3031 ml-4 mt-6"></div>
-      </div>
-      <div
-        class="
-          row
-          marg-0
-          col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5
-          padd-0
-          mt-6
-        "
-      >
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 padd-0 mt-6">
-          <div class="fsize12 clr-56585a">Occupation Type</div>
-          <div class="clr-000000 fsize12 mt-1">
-            <input
-              class="w-16 h-16 marg-t-2"
-              type="checkbox"
-              name="c2"
-              v-model="occupationType"
-              value="c2"
-              id="corporatebanking"
-            />
-
-            <label class="marg-0 pl-2 valign-top fsize14">
-              {{ this.oCcupation }}
-            </label>
-          </div>
-
-          <div
-            class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.occupationType"
-          >
-            Please select Occupation Type
-          </div>
-
-          <div class="mt-4 fsize12 clr-56585a">Work Profile</div>
-          <div class="clr-000000 fsize12 mt-1">
-            <input
-              class="w-16 h-16 marg-t-2"
-              type="checkbox"
-              name="c2"
-              value="c2"
-              v-model="workPRofile"
-              id="corporatebanking"
-            />
-
-            <label class="marg-0 pl-2 valign-top fsize14">
-              {{ this.workprofile }}
-            </label>
-          </div>
-          <div
-            class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.workPRofile"
-          >
-            Please select Work Profile
-          </div>
-
-          <div class="mt-4 fsize12 clr-56585a">Name Of Company/Business</div>
-          <div class="clr-000000 fsize12 mt-1">
-            <input
-              class="w-16 h-16 marg-t-2"
-              type="checkbox"
-              name="c2"
-              value="c2"
-              v-model="companyName"
-              id="corporatebanking"
-            />
-
-            <label class="marg-0 pl-2 valign-top fsize14">
-              {{ this.companyname }}
-            </label>
-          </div>
-          <div
-            class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.companyName"
-          >
-            Please select Name Of Company/Business
-          </div>
-
-          <div class="mt-4 fsize12 clr-56585a">Address Of Occupation</div>
-          <div class="clr-000000 fsize12 mt-1">
-            <input
-              class="w-16 h-16 marg-t-2"
-              type="checkbox"
-              name="c2"
-              value="c2"
-              v-model="occupationADDress"
-              id="corporatebanking"
-            />
-
-            <label class="marg-0 pl-2 valign-top fsize14">
-              {{ this.occupationaddress }}
-            </label>
-          </div>
-          <div
-            class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.occupationADDress"
-          >
-            Please select Address Of Occupation
-          </div>
-          <div class="mt-4 fsize12 clr-56585a">No Of Years Of Experience</div>
-          <div class="clr-000000 fsize12 mt-1">
-            <input
-              class="w-16 h-16 marg-t-2"
-              type="checkbox"
-              name="c2"
-              v-model="noOfYearsExperience"
-              value="c2"
-              id=""
-            />
-
-            <label class="marg-0 pl-2 valign-top fsize14">
-              {{ this.workexperience }}
-            </label>
-          </div>
-          <div
-            class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.noOfYearsExperience"
-          >
-            Please select No Of Years Of Experience
-          </div>
-
-          <div class="mt-4 fsize12 clr-56585a">Source Of Income</div>
-          <div class="clr-000000 fsize12 mt-1">
-            <input
-              class="w-16 h-16 marg-t-2"
-              type="checkbox"
-              name="c2"
-              value="c2"
-              v-model="sourceOfIncome"
-              id=""
-            />
-
-            <label class="marg-0 pl-2 valign-top fsize14">
-              {{ this.sourceincome }}
-            </label>
-          </div>
-          <div
-            class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.sourceOfIncome"
-          >
-            Please select Source Of Income
-          </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 padd-0 mt-6">
-          <div class="fsize12 clr-56585a">Who Will Place The Order</div>
-          <div class="clr-000000 fsize12 mt-1">
-            <input
-              class="w-16 h-16 marg-t-2"
-              type="checkbox"
-              name="c2"
-              v-model="placeTheOrder"
-              value="c2"
-              id="corporatebanking"
-            />
-
-            <label class="marg-0 pl-2 valign-top fsize14">
-              {{ this.placeorder }}
-            </label>
-          </div>
-          <div
-            class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.placeTheOrder"
-          >
-            Please select Who Will Place The Order
-          </div>
-          <div class="mt-4 fsize12 clr-56585a">Income Range</div>
-          <div class="clr-000000 fsize12 mt-1">
-            <input
-              class="w-16 h-16 marg-t-2"
-              type="checkbox"
-              name="c2"
-              value="c2"
-              v-model="iNcomeRange"
-              id="corporatebanking"
-            />
-
-            <label class="marg-0 pl-2 valign-top fsize14">
-              {{ this.incomerange }}
-            </label>
-          </div>
-          <div
-            class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.iNcomeRange"
-          >
-            Please select Income Range
-          </div>
-
-          <div class="mt-4 fsize12 clr-56585a">Net Worth</div>
-          <div class="clr-000000 fsize12 mt-1">
-            <input
-              class="w-16 h-16 marg-t-2"
-              type="checkbox"
-              name="c2"
-              value="c2"
-              v-model="nEtWorth"
-              id="corporatebanking"
-            />
-
-            <label class="marg-0 pl-2 valign-top fsize14">
-              {{ this.networth }}
-            </label>
-          </div>
-          <div
-            class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.nEtWorth"
-          >
-            Please select Income Range
-          </div>
-
-          <div class="mt-4 fsize12 clr-56585a">Educational Qualification</div>
-          <div class="clr-000000 fsize12 mt-1">
-            <input
-              class="w-16 h-16 marg-t-2"
-              type="checkbox"
-              name="c2"
-              value="c2"
-              v-model="eDucationalQualication"
-              id="corporatebanking"
-            />
-
-            <label class="marg-0 pl-2 valign-top fsize14">
-              {{ this.eduqualification }}
-            </label>
-          </div>
-             <div
-            class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.eDucationalQualication"
-          >
-            Please select Income Range
-          </div>
-          <div class="mt-4 fsize12 clr-56585a">
-            Trading/ Investment Experience
-          </div>
-          <div class="clr-000000 fsize12 mt-1">
-            <input
-              class="w-16 h-16 marg-t-2"
-              type="checkbox"
-              name="c2"
-              v-model="tRadingExperience"
-              value="c2"
-              id=""
-            />
-
-            <label class="marg-0 pl-2 valign-top fsize14">
-              {{ this.tradingexperience }}
-            </label>
-          </div>
-              <div
-            class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.tRadingExperience"
-          >
-            Please select Trading/ Investment Experience
-          </div>
-
-          <div class="mt-4 fsize12 clr-56585a">
-            Dealing With Any Other Broker
-          </div>
-          <div class="clr-000000 fsize12 mt-1">
-            <input
-              class="w-16 h-16 marg-t-2"
-              type="checkbox"
-              name="c2"
-              v-model="anyOtherBroker"
-              value="c2"
-              id=""
-            />
-
-            <label class="marg-0 pl-2 valign-top fsize14">
-              {{ this.otherbroker }}
-            </label>
-          </div>
-                  <div
-            class="fsize11 text-danger"
-            v-if="this.submittedaddressProof && !this.anyOtherBroker"
-          >
-            Please select Trading/ Investment Experience
-          </div>
-        </div>
-      </div>
-      <div class="row m-0 mt-10 mb-4 justify-content-flex-end">
-        <span class="fsize14"
-          ><button
-            type="button"
-            class="
-              padd-0-16
-              h-40
-              bgclr-fff
-              clr-2E3031
-              border-radius
-              borderclr-2E3031
-              minwidth-96
-              mr-4
-            "
-            @click="callModal()"
-          >
-            Reject
-          </button>
-        </span>
-        <span class="fsize14 pr-16"
-          ><button
-            class="
-              padd-0-16
-              h-40
-              bgrclr-007AFF
-              border-radius
-              bdrclr-007aff
-              clr-fff
-              minwidth-96
-            "
-            @click="aDDitionalDetailsApprove()"
           >
             Approve
           </button></span
@@ -1235,6 +1262,8 @@ export default {
       perAddressContent: false,
       bankDetailsContent: false,
       additionalDetailsContent: false,
+      documentContent: false,
+      backOfficeContent: false,
       addressLine: false,
       pincodeCheckBox: false,
       cityCheckBox: false,
@@ -1256,8 +1285,12 @@ export default {
       placeTheOrder: false,
       iNcomeRange: false,
       nEtWorth: false,
-      eDucationalQualication:false,
-      tRadingExperience:false,
+      eDucationalQualication: false,
+      tRadingExperience: false,
+      anyOtherBroker: false,
+      // 
+      bankDetailsArray:[],
+      holderName:false,
     };
   },
   methods: {
@@ -1275,7 +1308,9 @@ export default {
       this.perAddressContent = false;
       this.bankDetailsContent = false;
       this.additionalDetailsContent = false;
-      this.submittedaddressProof = false;
+      this.documentContent = false;
+      this.backOfficeContent = false;
+      this.submittedPanProof = false;
       let panCard = {
         applicationId: this.apllicationId,
       };
@@ -1297,7 +1332,9 @@ export default {
       this.perAddressContent = false;
       this.bankDetailsContent = false;
       this.additionalDetailsContent = false;
-      this.submittedPanProof = false;
+      this.documentContent = false;
+      this.backOfficeContent = false;
+      this.submittedaddressProof = false;
       let getAdDress = {
         applicationId: this.apllicationId,
       };
@@ -1320,6 +1357,8 @@ export default {
       this.perAddressContent = true;
       this.bankDetailsContent = false;
       this.additionalDetailsContent = false;
+      this.documentContent = false;
+      this.backOfficeContent = false;
       this.submittedperAddressProof = false;
       let permanentAdDress = {
         applicationId: this.apllicationId,
@@ -1343,6 +1382,8 @@ export default {
       this.perAddressContent = false;
       this.bankDetailsContent = true;
       this.additionalDetailsContent = false;
+      this.documentContent = false;
+      this.backOfficeContent = false;
       this.submittedBankProof = false;
       let bank = {
         applicationId: this.apllicationId,
@@ -1350,6 +1391,7 @@ export default {
       httpService.baNkDetails(bank).then((response) => {
         if (response.status == 200) {
           if (response.data["status"] == 1) {
+            this.bankDetailsArray = response.data.result;
             this.iffccode = response.data.result.ifsc_code;
             this.bankname = response.data.result.bankName;
             this.bankaddress = response.data.result.bankAddress;
@@ -1367,6 +1409,8 @@ export default {
       this.bankDetailsContent = false;
       this.additionalDetailsContent = true;
       this.submittedAdditionalProof = false;
+      this.documentContent = false;
+      this.backOfficeContent = false;
       let additional = {
         applicationId: this.apllicationId,
       };
@@ -1389,6 +1433,26 @@ export default {
           }
         }
       });
+    },
+    // get documents details
+    documentsDetails() {
+      this.pancardContent = false;
+      this.addressContent = false;
+      this.perAddressContent = false;
+      this.bankDetailsContent = false;
+      this.additionalDetailsContent = false;
+      this.documentContent = true;
+      this.backOfficeContent = false;
+    },
+    // get backOffice details
+    backOfficeDetails() {
+      this.pancardContent = false;
+      this.addressContent = false;
+      this.perAddressContent = false;
+      this.bankDetailsContent = false;
+      this.additionalDetailsContent = false;
+      this.documentContent = false;
+      this.backOfficeContent = true;
     },
 
     panReject() {
@@ -1424,8 +1488,7 @@ export default {
         };
         httpService.panApproveOrReject(json).then((response) => {
           if (response.status == 200 && response.data.message == "Success") {
-            // console.log(response);
-            this.getaddress();
+            this.additionaldetail();
           }
         });
       }
@@ -1470,11 +1533,9 @@ export default {
         }
       });
     },
-
     // permanentAddressApprove
-
     permanentAddressApprove() {
-      this.submittedaddressProof = true;
+      this.submittedperAddressProof = true;
       if (
         this.perAddressline &&
         this.perPincode &&
@@ -1495,29 +1556,10 @@ export default {
         });
       }
     },
-
-    // permanentAdressReject
-    // permanentaddressReject() {
-    //   let json = {
-    //     applicationId: this.apllicationId,
-    //     isApprove: 0,
-    //     isRejected: 1,
-    //     comments: this.comments,
-    //   };
-    //   httpService.permanentApproveOrReject(json).then((response) => {
-    //     if (response.status == 200 && response.data.message == "Success") {
-    //       this.closeModal();
-    //       this.comments = "";
-    //       this.bankdetails();
-    //     }
-    //   });
-    // },
-
-    // bankDetailsApprove
-
+    //bankDetailsApprove
     bankDetailsApprove() {
-      this.submittedaddressProof = true;
-      if (this.ifFcCode && this.bAnkName && this.bAnkAddress && this.miCrCode) {
+      this.submittedBankProof = true;
+      if (this.ifFcCode && this.bAnkName && this.holderName && this.miCrCode) {
         let json = {
           applicationId: this.apllicationId,
           isApprove: 1,
@@ -1526,15 +1568,15 @@ export default {
         };
         httpService.bankDetailsApproveOrReject(json).then((response) => {
           if (response.status == 200 && response.data.message == "Success") {
-            this.additionaldetail();
+            this.documentsDetails();
           }
         });
       }
     },
     // aDDitionalDetailsApprove
-
+    // aDDitionalDetailsApprove
     aDDitionalDetailsApprove() {
-      this.submittedaddressProof = true;
+      this.submittedAdditionalProof = true;
       if (
         this.occupationType &&
         this.workPRofile &&
@@ -1544,8 +1586,9 @@ export default {
         this.sourceOfIncome &&
         this.placeTheOrder &&
         this.iNcomeRange &&
-        this.nEtWorth && 
-        this.eDucationalQualication &&  this.tRadingExperience
+        this.nEtWorth &&
+        this.eDucationalQualication &&
+        this.tRadingExperience
       ) {
         let json = {
           applicationId: this.apllicationId,
@@ -1555,7 +1598,7 @@ export default {
         };
         httpService.additionalDetailApproveOrReject(json).then((response) => {
           if (response.status == 200 && response.data.message == "Success") {
-            this.additionaldetail();
+            this.getaddress();
           }
         });
       }
@@ -1584,8 +1627,8 @@ export default {
 .w-426 {
   width: 426px;
 }
-.h-268 {
-  height: 268px;
+.h-500 {
+  height: 500px;
 }
 .bgrclr-007AFF {
   background-color: #007aff;
@@ -1622,7 +1665,7 @@ export default {
 .minwidth-96 {
   min-width: 96px !important;
 }
-.pancardHeight{
+.pancardHeight {
   min-height: calc(100vh - 131px) !important;
 }
 </style>
